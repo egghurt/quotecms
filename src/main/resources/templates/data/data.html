@@ -16,7 +16,7 @@
         <fieldset  style="width:220px; min-height:99.9%;height:auto;padding: 0px;margin: 0">
             <ul id="category-data-tree" class="ztree" data-toggle="ztree" data-expand-all="true" data-on-click="do_open_layout_data">
                 <!--输出分类tree列表-->
-                ${ContentCategoryOut(0,session.SysUser.siteId!0,'/system/cms/data/page?categoryId')}
+                ${DataItemOut(0,session.SysUser.siteId!0,'/system/cms/data/page?categoryId')}
             </ul>
         </fieldset>
     </div>

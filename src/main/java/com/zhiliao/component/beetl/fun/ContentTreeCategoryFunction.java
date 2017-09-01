@@ -31,7 +31,6 @@ public class ContentTreeCategoryFunction implements Function{
 
     @Override
     public Object call(Object[] objects, Context context) {
-
         Long pid = Long.parseLong(objects[0].toString());
         Integer siteId = Integer.parseInt(objects[1].toString());
         if(objects[2]!=null&&!StrUtil.isBlank(objects[2].toString()))
