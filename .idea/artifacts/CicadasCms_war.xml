@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="CicadasCms:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="CicadasCms-0.1.war">
+      <element id="artifact" artifact-name="CicadasCms:war exploded" />
+    </root>
+  </artifact>
+</component>
