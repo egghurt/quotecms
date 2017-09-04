@@ -2,5 +2,7 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/banner.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/templates/data/data_input.html" charset="UTF-8" />
   </component>
 </project>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atk.mybatis.mapper.TCmsDataMapper">
+    <resultMap id="BaseResultMap" type="com.atk.mybatis.model.TCmsData">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="data_id" jdbcType="BIGINT" property="dataId" />
+        <result column="site_id" jdbcType="INTEGER" property="siteId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="item_id" jdbcType="BIGINT" property="itemId" />
+        <result column="pattern_id" jdbcType="INTEGER" property="patternId" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="inputdate" jdbcType="TIMESTAMP" property="inputDate" />
+        <result column="updatedate" jdbcType="TIMESTAMP" property="updateDate" />
+        <result column="checkdate" jdbcType="TIMESTAMP" property="checkDate" />
+        <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+    </resultMap>
+
+    <select id="selectByDataIdAndTableName"  resultType="java.util.Map">
+        SELECT
+        d.data_id dataId,
+        d.site_id siteId,
+        d.user_id userId,
+        d.item_id itemId,
+        d.pattern_id patternId,
+        d.name,
+        d.updateDate,
+        d.inputDate,
+        d.checkData,
+        d.status,
+        d.remark,
+        m.*
+        FROM
+        t_cms_data d  LEFT JOIN  t_cms_data_${tableName}  m
+        ON
+        d.data_id = m.data_id
+        WHERE
+        d.data_id =#{dataId}
+    </select>
+
+    <select id="selectByCondition" parameterType="com.atk.mybatis.model.TCmsData" resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM
+        t_cms_data
+        <trim prefix="WHERE ("  suffix=")" prefixOverrides="AND|OR">
+            <if test="name!=null and name!=''">
+                name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="siteId!=null">
+                and  site_id = #{siteId,jdbcType=INTEGER}
+            </if>
+            <if test="itemId!=null">
+                and  item_id = #{itemId,jdbcType=BIGINT}
+            </if>
+            <if test="status!=null">
+                and  status = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="status==null">
+                and  status in(0,1)
+            </if>
+        </trim>
+        <choose>
+            <when test="orderField!=null and orderField!='' and orderDirection!=null and orderDirection!='' ">
+                order by ${orderField} ${orderDirection}
+            </when>
+            <otherwise>
+                order by data_id  DESC
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

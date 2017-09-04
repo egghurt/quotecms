@@ -1,6 +1,7 @@
 package com.zhiliao.component.beetl;
 
 
+import com.atk.component.beetl.fun.DataSelectItemFunction;
 import com.atk.component.beetl.fun.DataTreeItemFunction;
 import com.atk.component.beetl.fun.SelectItemFunction;
 import com.atk.component.beetl.fun.TreeItemFunction;
@@ -80,7 +81,8 @@ public class BeetlConfiguration {
 
                                          TreeItemFunction itemFunction,
                                          SelectItemFunction selectItemFunction,
-                                         DataTreeItemFunction dataTreeItemFunction
+                                         DataTreeItemFunction dataTreeItemFunction,
+                                         DataSelectItemFunction dataSelectItemFunction
                                         ){
         Map<String,Function> functionPackages = Maps.newHashMap();
 
@@ -88,6 +90,7 @@ public class BeetlConfiguration {
         functionPackages.put("TreeItemOut", itemFunction);
         functionPackages.put("SelectItemOut", selectItemFunction);
         functionPackages.put("DataItemOut", dataTreeItemFunction);
+        functionPackages.put("DataSelectItemFunction", dataSelectItemFunction);
 
         /**自定义函数结束**/
 

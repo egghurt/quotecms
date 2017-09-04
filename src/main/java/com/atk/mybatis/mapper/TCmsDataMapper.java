@@ -8,5 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface TCmsDataMapper extends Mapper<TCmsData> {
+    List<TCmsData> selectByCondition(TCmsData data);
 
+    Map selectByDataIdAndTableName(Long dataId, String tableName);
 }

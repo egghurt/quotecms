@@ -16,7 +16,8 @@
         <fieldset  style="width:220px; min-height:99.9%;height:auto;padding: 0px;margin: 0">
             <ul id="category-data-tree" class="ztree" data-toggle="ztree" data-expand-all="true" data-on-click="do_open_layout_data">
                 <!--输出分类tree列表-->
-                ${DataItemOut(0,session.SysUser.siteId!0,'/system/cms/data/page?categoryId')}
+                ${DataItemOut(0,session.SysUser.siteId!0,'/system/cms/data/page?itemId')}
+                <li data-id="10" data-pid="0" data-faicon="plus" data-url="${ctxPath}/system/cms/data/batch" data-divid="#layout-batch">批量发布</li>
             </ul>
         </fieldset>
     </div>
