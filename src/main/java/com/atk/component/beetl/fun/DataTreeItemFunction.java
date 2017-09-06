@@ -40,7 +40,8 @@ public class DataTreeItemFunction implements Function {
                 if (item.getAlone())
                     continue;
                 if (items != null && service.findItemListByPid(item.getItemId(), siteId).size() > 0) {
-                    sbf.append("  <li data-id=\"" + item.getItemId() + "\" data-pid=\"" + pid + "\" >" + item.getItemName() + " [" + item.getItemId() + "] </li>");
+                    sbf.append("  <li data-id=\"" + item.getItemId() + "\" data-pid=\"" + pid + "\" data-url=\"" + httpProtocol + "://" + ControllerUtil.getDomain() + url + "=" + item.getItemId() + "\" data-divid=\"#layout-data\">" + item.getItemName() + " [" + item.getItemId() + "] </li>");
+                    //sbf.append("  <li data-id=\"" + item.getItemId() + "\" data-pid=\"" + pid + "\" >" + item.getItemName() + " [" + item.getItemId() + "] </li>");
                 } else {
                     sbf.append("  <li data-id=\"" + item.getItemId() + "\" data-pid=\"" + pid + "\" data-url=\"" + httpProtocol + "://" + ControllerUtil.getDomain() + url + "=" + item.getItemId() + "\" data-divid=\"#layout-data\">" + item.getItemName() + " [" + item.getItemId() + "] </li>");
                 }

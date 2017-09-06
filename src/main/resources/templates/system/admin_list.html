@@ -69,10 +69,11 @@
                 <td align="center">${user.loginTime!"N/A",dateFormat="yy/MM/dd HH:mm:dd"}</td>
                 <!--<td align="center">${user.logoutTime!"N/A",dateFormat="yy/MM/dd HH:mm:dd"}</td>-->
                 <td align="center">${user.lastIp!}</td>
-                <td  align="center"><input type="checkbox" name="ids" data-toggle="icheck" value="${user.userId!}"></td>
-                <td  align="center">
+                <td align="center"><input type="checkbox" name="ids" data-toggle="icheck" value="${user.userId!}"></td>
+                <td align="center">
+                    <a href="${ctxPath}/system/cms/item/toUser?userId=${user.userId!}" class="btn btn-blue" data-toggle="dialog" data-maxable="false" data-resizable="false" data-width="650" data-height="550" data-id="edit-user-item" data-title="分配品种">分配品种</a>
                     <a href="${ctxPath}/system/member/sysUserInput?userId=${user.userId!}" class="btn btn-green"  data-toggle="dialog" data-maxable="false" data-resizable="false"  data-width="650" data-height="550" data-id="edit-admin-user"  data-title="用户修改">编辑</a>
-                    <a href="${ctxPath}/system/member/sysUserDel?userId=${user.userId!}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+                    <a href="${ctxPath}/system/member/sysUserDel?userId=${user.userId!}" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删除</a>
                 </td>
             </tr>
         @}

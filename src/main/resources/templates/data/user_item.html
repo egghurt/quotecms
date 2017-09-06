@@ -1,0 +1,66 @@
+<style>
+    td {
+        border-top: 1px solid #ddd;
+        line-height: 25px;
+        padding: 5px 5px 5px 7px;
+    }
+    .point{
+        color: #0099CC;
+        font-weight: bold;
+    }
+</style>
+<script type="text/javascript">
+    //选择事件
+    function P_NodeCheck(e, treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj(treeId),
+            nodes = zTree.getCheckedNodes(true);
+        var ids = '', names = '';
+
+        for (var i = 0; i < nodes.length; i++) {
+            ids   += ','+ nodes[i].id;
+            names += ','+ nodes[i].name;
+        }
+        if (ids.length > 0) {
+            ids = ids.substr(1);
+        }
+        $("#itemId").val(ids);
+    }
+    //单击事件
+    function P_NodeClick(event, treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj(treeId);
+        zTree.checkNode(treeNode, !treeNode.checked, true, true);
+        event.preventDefault();
+    }
+</script>
+<div class="bjui-pageContent">
+    <form method="post" action="${ctxPath}/system/cms/item/saveToUser" id="j_client_form" data-toggle="validate" data-autorefresh="true" data-alertmsg="false">
+        <input TYPE="hidden" name="userId" value="${user.userId!}">
+        <table cellspacing="1" cellpadding="6" border="0" width="100%">
+            <tbody>
+            <tr>
+                <td valign="middle" width="8%" >
+                    <label class="control-label x85">品种：</label>
+                </td>
+                <td valign="middle" align="left">
+                    <ul id="j_select_item" class="ztree" data-toggle="ztree" data-expand-all="false" data-check-enable="true" data-on-check="P_NodeCheck" data-on-click="P_NodeClick">
+                        @for(item in items){
+                        ${ItemOut(item.itemId,user.userId!0)}
+                        @}
+                    </ul>
+                    <input type="hidden" name="itemId" id="itemId" size="100">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        @if(isEmpty(item.itemId)){
+        <li><button type="submit" class="btn-default"  data-icon="save">保存</button></li>
+        @}else{
+        <li><button onclick="del(this)" type="button" class="btn-close" data-icon="close">删除</button></li>
+        <li><button type="submit" class="btn-default"  data-icon="save">更新</button></li>
+        @}
+    </ul>
+</div>

@@ -4,13 +4,13 @@ import com.atk.common.constant.CmsConst;
 import com.atk.module.web.cms.service.ItemService;
 import com.atk.mybatis.mapper.TCmsDataMapper;
 import com.atk.mybatis.mapper.TCmsItemMapper;
+import com.atk.mybatis.mapper.TCmsUserItemMapper;
 import com.atk.mybatis.model.TCmsItem;
+import com.atk.mybatis.model.TCmsUserItem;
 import com.github.pagehelper.PageInfo;
 
-import com.zhiliao.common.utils.HtmlKit;
-import com.zhiliao.common.utils.JsonUtil;
-import com.zhiliao.common.utils.PinyinUtil;
-import com.zhiliao.common.utils.StrUtil;
+import com.zhiliao.common.utils.*;
+import com.zhiliao.mybatis.model.TSysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -30,14 +30,22 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private TCmsDataMapper dataMapper;
 
+    @Autowired
+    private TCmsUserItemMapper userItemMapper;
+
+    @Cacheable(key = "'find-list-pid-'+#p0")
     @Override
     public List<TCmsItem> findItemListByPid(Long pid) {
-        return null;
+        TCmsItem item = new TCmsItem();
+        item.setParentId(pid);
+        return itemMapper.select(item);
     }
 
     @Override
     public List<TCmsItem> findItemListBySiteId(Integer siteId) {
-        return null;
+        TCmsItem item = new TCmsItem();
+        item.setSiteId(siteId);
+        return itemMapper.select(item);
     }
 
     @Cacheable(key = "'find-list-pid-'+#p0+'-siteId-'+#p1")
@@ -57,19 +65,24 @@ public class ItemServiceImpl implements ItemService {
         return itemMapper.selectOne(item);
     }
 
+    @Cacheable(key = "'find-page-size-'+#p0")
     @Override
     public Integer findPageSize(Long itemId) {
-        return null;
+        return this.itemMapper.selectByPrimaryKey(itemId).getPageSize();
     }
 
+    @Cacheable(key = "'find-alias-'+#p0+'-siteId-'+#p1")
     @Override
-    public TCmsItem findfindByAliasAndSiteId(String alias, Integer siteId) {
-        return null;
+    public TCmsItem findByAliasAndSiteId(String alias, Integer siteId) {
+        TCmsItem item = new TCmsItem();
+        item.setAlias(alias);
+        item.setSiteId(siteId);
+        return itemMapper.selectOne(item);
     }
 
     @Override
     public Integer AllCount() {
-        return null;
+        return this.itemMapper.selectCount(new TCmsItem());
     }
 
     @CacheEvict(cacheNames = "cms-item-cache",allEntries = true,beforeInvocation = true)
@@ -92,6 +105,26 @@ public class ItemServiceImpl implements ItemService {
             return JsonUtil.toSUCCESS("品种添加成功！","item-tab",true);
         }
         return JsonUtil.toERROR("品种添加失败！");
+    }
+
+    @Override
+    @Transactional(transactionManager = "masterTransactionManager")
+    public String update(TSysUser user, Long[] itemId) {
+        if(user != null) {
+            if(!CmsUtil.isNullOrEmpty(itemId)) {
+                userItemMapper.deleteByUserId(user.getUserId());
+            }
+            if(!CmsUtil.isNullOrEmpty(itemId)&&itemId.length>0){
+                for (long id : itemId) {
+                    TCmsUserItem ui = new TCmsUserItem();
+                    ui.setUserId(user.getUserId());
+                    ui.setItemId(id);
+                    saveUserItem(ui);
+                }
+            }
+            return JsonUtil.toSUCCESS("操作成功","user-item",true);
+        }
+        return JsonUtil.toERROR("操作失败！");
     }
 
     @Transactional(transactionManager = "masterTransactionManager",propagation = Propagation.REQUIRED,rollbackFor=Exception.class)
@@ -119,6 +152,39 @@ public class ItemServiceImpl implements ItemService {
         if(itemMapper.updateByPrimaryKeySelective(pojo)>0)
             return JsonUtil.toSUCCESS("品种更新成功！","item-tab",false);
         return JsonUtil.toERROR("品种更新失败！");
+    }
+
+    @Override
+    public Integer findItemCountByUserId(Integer userId, Long itemId) {
+        return userItemMapper.selectCountByUserIdAndItemId(userId, itemId);
+    }
+
+    @Override
+    public Integer saveUserItem(TCmsUserItem userItem) {
+        return userItemMapper.insert(userItem);
+    }
+
+    @Override
+    @Transactional(transactionManager = "masterTransactionManager")
+    public String deleteItemById(Long id) {
+        if(itemMapper.deleteByPrimaryKey(id) > 0) {
+            userItemMapper.deleteByItemId(id);
+            List<TCmsItem> items = itemMapper.selectByPid(id);
+            if(items != null && items.size()>0) {
+                for(TCmsItem i:items) {
+                    userItemMapper.deleteByItemId(i.getItemId());
+                }
+            }
+            itemMapper.deleteByPid(id);
+            return  JsonUtil.toSUCCESS("品种删除成功","item",true);
+        }
+        return JsonUtil.toERROR("品种删除失败");
+    }
+
+    @Cacheable(key = "'find-itemlist-byuser-'+#p0")
+    @Override
+    public List<TCmsItem> findItemListByUserId(Integer userId) {
+        return itemMapper.selectItemListByUserId(userId);
     }
 
     @Override

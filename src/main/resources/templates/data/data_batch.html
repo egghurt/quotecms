@@ -1,0 +1,20 @@
+<div class="bjui-pageContent">
+    <form method="post" action="${ctxPath}/system/cms/data/save" id="j_model_form" data-toggle="validate" data-autorefresh="true" data-alertmsg="false">
+        <table class="table table-condensed table-hover" width="100%">
+            <tbody>
+            ${ItemFieldOut(userId)}
+            </tbody>
+        </table>
+    </form>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button onclick="data_save_post()" type="submit" class="btn btn-green" data-icon="send">保存发布</button></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    function test() {
+        var json = $("#j_model_form").serializeJson();
+        console.log($.parseJSON(json));
+    }
+</script>

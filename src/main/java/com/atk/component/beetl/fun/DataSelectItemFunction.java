@@ -23,7 +23,7 @@ public class DataSelectItemFunction implements Function {
     }
 
     /*递归输出子节点*/
-    private String recursion(Long cid,Long  pid,String tag,Integer siteId){
+    private String recursion(Long cid, Long pid, String tag, Integer siteId){
          /*临时拼凑看不懂就放弃*/
         tag+=(StrUtil.isBlank(tag)?"&nbsp;&nbsp;":"&nbsp;&nbsp;&nbsp;&nbsp;");
         StringBuffer sbf = new StringBuffer();

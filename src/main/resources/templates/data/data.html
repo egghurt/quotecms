@@ -17,14 +17,14 @@
             <ul id="category-data-tree" class="ztree" data-toggle="ztree" data-expand-all="true" data-on-click="do_open_layout_data">
                 <!--输出分类tree列表-->
                 ${DataItemOut(0,session.SysUser.siteId!0,'/system/cms/data/page?itemId')}
-                <li data-id="10" data-pid="0" data-faicon="plus" data-url="${ctxPath}/system/cms/data/batch" data-divid="#layout-batch">批量发布</li>
+                <li data-id="10" data-pid="0" data-faicon="plus" data-url="${ctxPath}/system/cms/data/batch" data-divid="#layout-data">批量发布</li>
             </ul>
         </fieldset>
     </div>
     <div style="margin-left:160px; height:99.9%; overflow:hidden;" >
         <div style="height:100%; overflow:hidden;">
             <fieldset style="height:100%;">
-                <div id="layout-data"   data-url="${ctxPath}/system/cms/data/page" data-toggle="autoajaxload" style="height:99%; overflow:hidden;">
+                <div id="layout-data" data-url="${ctxPath}/system/cms/data/page" data-toggle="autoajaxload" style="height:99%; overflow:hidden;">
 
                 </div>
             </fieldset>

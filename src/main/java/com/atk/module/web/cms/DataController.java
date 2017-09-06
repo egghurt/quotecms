@@ -59,7 +59,8 @@ public class DataController {
         data.setSiteId(userVo.getSiteId());
         data.setUserId(userVo.getUserId());
         model.addAttribute("model", dataService.page(pageNumber, pageSize, data));
-        model.addAttribute("pojo",data);
+        model.addAttribute("pojo", data);
+        model.addAttribute("item", itemService.findById(data.getItemId()));
         return "data/data_list";
     }
 
@@ -87,10 +88,14 @@ public class DataController {
     @SysLog("批量添加")
     @RequiresPermissions("data:batch")
     @RequestMapping("/batch")
-    public String batch(@RequestParam(value = "categoryId",required = false) Long categoryId,
-                        @RequestParam(value = "contentId",required = false) Long contentId,
+    public String batch(@RequestParam(value = "itemId",required = false) Long itemId,
                         @RequestParam(value = "isWindow",defaultValue = "NO") String isWindow,
                         Model model) {
+        UserVo userVo = ((UserVo) ControllerUtil.getHttpSession().getAttribute(CmsConst.SITE_USER_SESSION_KEY));
+        if(CmsUtil.isNullOrEmpty(userVo))
+            throw new UnauthenticatedException();
+        model.addAttribute("userId", userVo.getUserId());
+        model.addAttribute("isWindow",isWindow);
         return "data/data_batch";
     }
 

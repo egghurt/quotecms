@@ -9,7 +9,10 @@ import com.zhiliao.common.utils.CmsUtil;
 import com.zhiliao.common.utils.HtmlKit;
 import com.zhiliao.common.utils.PinyinUtil;
 import com.zhiliao.common.utils.UserUtil;
+import com.zhiliao.module.web.system.service.RoleService;
+import com.zhiliao.module.web.system.service.SysUserService;
 import com.zhiliao.module.web.system.vo.UserVo;
+import com.zhiliao.mybatis.model.TSysUser;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,10 @@ public class ItemController {
     private PatternService patternService;
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private SysUserService sysUserService;
+    @Autowired
+    private RoleService roleService;
 
     @RequiresPermissions("item:admin")
     @RequestMapping
@@ -56,6 +63,26 @@ public class ItemController {
         if(pojo.getItemId()!=null)
             return  itemService.update(pojo);
         return itemService.save(pojo);
+    }
+
+    @RequestMapping("/toUser")
+    public String toUser(@RequestParam(value = "userId",required = false) Integer userId, Model model) {
+        if(userId!=null) {
+            model.addAttribute("user", sysUserService.findSysUserByUserId(userId));
+            model.addAttribute("userRole", roleService.findByUserIdAndTypeId(userId,0));
+        }
+        model.addAttribute("items", itemService.findItemListByPid(0l));
+        return "data/user_item";
+    }
+
+    @RequiresPermissions({"userItem:save"})
+    @RequestMapping("/saveToUser")
+    @ResponseBody
+    public String saveToUser(TSysUser user, @RequestParam(value = "itemId",required = false) Long[] itemId) {
+        if(user.getUserId() != null) {
+            return itemService.update(user, itemId);
+        }
+        return "保存成功";
     }
 
     @RequestMapping("/checkItem")
