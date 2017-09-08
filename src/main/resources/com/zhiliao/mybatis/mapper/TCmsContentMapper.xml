@@ -107,7 +107,7 @@
         t_cms_content
         <trim prefix="WHERE ("  suffix=")" prefixOverrides="AND|OR">
             <if test="siteId!=null">
-                site_id = #{siteId}
+                AND site_id = #{siteId}
             </if>
             <if test="categoryIds!=null">
                AND
@@ -120,13 +120,12 @@
                 AND
                     recommend = 1
             </if>
-            <if test='isPic!=null and isPic=="1"'>
+            <if test='isPic!=null and isPic=="0"'>
                 AND
-                   thumb is not null  OR thumb!=''
+                   thumb!=''
             </if>
-        AND
-            status=1
         </trim>
+
         <choose>
             <when test="orderBy==1">
                 order by content_id

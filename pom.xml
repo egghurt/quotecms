@@ -15,7 +15,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.3.RELEASE</version>
+        <version>1.5.6.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -90,7 +90,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
-            <version>1.5.3.RELEASE</version>
+            <version>1.5.6.RELEASE</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -227,8 +227,8 @@
             <version>2.2.1</version>
         </dependency>
         <dependency>
-            <groupId>Commons-lang</groupId>
-            <artifactId>Commons-lang</artifactId>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
         <!--pinyin4j-->

@@ -16,7 +16,7 @@ public interface TCmsItemMapper extends Mapper<TCmsItem> {
     @Delete("DELETE FROM t_cms_item WHERE parent_id=#{pid}")
     int deleteByPid(Long pid);
 
-    @Select("SELECT i.* FROM t_cms_item i LEFT JOIN t_cms_user_item u ON i.has_child IS NULL AND i.item_id = u.item_id WHERE u.user_id =#{userId}")
+    @Select("SELECT i.* FROM t_cms_item i LEFT JOIN t_cms_user_item u ON i.has_child = 0 AND i.item_id = u.item_id WHERE u.user_id =#{userId}")
     @ResultMap("BaseResultMap")
     List<TCmsItem> selectItemListByUserId(Integer userId);
 }

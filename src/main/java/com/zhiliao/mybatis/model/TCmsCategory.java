@@ -101,6 +101,12 @@ public class TCmsCategory implements Serializable {
     private Boolean allowSearch;
 
     /**
+     * 栏目图标
+     */
+     @Column(name = "category_icon")
+     private String categoryIcon;
+
+    /**
      * 文本
      */
     private String content;
@@ -403,6 +409,14 @@ public class TCmsCategory implements Serializable {
      */
     public void setAllowSearch(Boolean allowSearch) {
         this.allowSearch = allowSearch;
+    }
+
+    public String getCategoryIcon() {
+        return categoryIcon;
+    }
+
+    public void setCategoryIcon(String categoryIcon) {
+        this.categoryIcon = categoryIcon;
     }
 
     /**

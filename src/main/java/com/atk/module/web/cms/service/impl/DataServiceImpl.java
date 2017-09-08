@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zhiliao.common.exception.CmsException;
 import com.zhiliao.common.utils.CmsUtil;
+import com.zhiliao.common.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheConfig;
@@ -16,6 +17,10 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -45,12 +50,54 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public String save(TCmsData pojo) {
+        dataMapper.insert(pojo);
+        System.out.println("What you saved is: " + pojo.getDataId());
+        return null;
+    }
+
+    @Override
+    public Long save(TCmsData pojo, String table) {
+        if(dataMapper.insert(pojo) > 0) {
+            String insert = "insert into t_cms_data_"+table+" set " +
+                    "data_id=" + pojo.getDataId();
+            try {
+                Connection conn = dataSource.getConnection();
+                Statement stmt = conn.createStatement();
+                int status = stmt.executeUpdate(insert);
+                if(status > 0) {
+                    return pojo.getDataId();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String updatePatternData(String table, Long dataId, String field, String value) {
+        String update = "update t_cms_data_" + table + " set "
+                + field + " = " + value +" where data_id = " + dataId;
+        try {
+            Connection conn = dataSource.getConnection();
+            Statement stmt = conn.createStatement();
+            int status = stmt.executeUpdate(update);
+            if(status > 0) {
+                TCmsData data = findById(dataId);
+                data.setUpdateDate(new Date());
+                return update(data);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public String update(TCmsData pojo) {
-        return null;
+        if(dataMapper.updateByPrimaryKeySelective(pojo) > 0)
+            return JsonUtil.toSUCCESS("操作成功");
+        return JsonUtil.toERROR("操作失败");
     }
 
     @Override
@@ -60,7 +107,7 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public TCmsData findById(Long id) {
-        return null;
+        return dataMapper.selectByPrimaryKey(id);
     }
 
     @Override

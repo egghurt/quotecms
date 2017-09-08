@@ -32,4 +32,6 @@ public interface ItemService extends BaseService<TCmsItem,Long> {
     public String deleteItemById(Long id);
 
     List<TCmsItem> findItemListByUserId(Integer userId);
+
+    List<TCmsItem> selectItemListByUserIdAndParentId(Integer userId, Long parentId);
 }

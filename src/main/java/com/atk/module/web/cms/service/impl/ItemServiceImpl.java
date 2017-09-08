@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -185,6 +186,37 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<TCmsItem> findItemListByUserId(Integer userId) {
         return itemMapper.selectItemListByUserId(userId);
+    }
+
+    @Override
+    public List<TCmsItem> selectItemListByUserIdAndParentId(Integer userId, Long parentId) {
+        List<TCmsItem> result = new ArrayList<TCmsItem>();
+        List<TCmsItem> children = getChildren(findById(parentId));
+        List<TCmsItem> check = findItemListByUserId(userId);
+        for(TCmsItem s:children) {
+            for(TCmsItem t:check) {
+                if(s.getItemId() == t.getItemId()) {
+                    result.add(t);
+                }
+            }
+        }
+        return result;
+    }
+
+    public List<TCmsItem> getChildren(TCmsItem item) {
+        List<TCmsItem> result = new ArrayList<TCmsItem>();
+        List<TCmsItem> children = findItemListByPid(item.getItemId());
+        if(children != null) {
+            for (TCmsItem i : children) {
+                if (i.getHasChild()) {
+                    result.addAll(getChildren(i));
+                }
+                else {
+                    result.add(i);
+                }
+            }
+        }
+        return result;
     }
 
     @Override

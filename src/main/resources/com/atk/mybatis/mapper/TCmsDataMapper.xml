@@ -12,9 +12,9 @@
         <result column="pattern_id" jdbcType="INTEGER" property="patternId" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="status" jdbcType="INTEGER" property="status" />
-        <result column="inputdate" jdbcType="TIMESTAMP" property="inputDate" />
-        <result column="updatedate" jdbcType="TIMESTAMP" property="updateDate" />
-        <result column="checkdate" jdbcType="TIMESTAMP" property="checkDate" />
+        <result column="input_date" jdbcType="TIMESTAMP" property="inputDate" />
+        <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+        <result column="check_date" jdbcType="TIMESTAMP" property="checkDate" />
         <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
     </resultMap>
 

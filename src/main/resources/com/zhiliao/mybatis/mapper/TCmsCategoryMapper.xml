@@ -9,6 +9,7 @@
     <result column="alias" jdbcType="VARCHAR" property="alias" />
     <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
     <result column="site_id" jdbcType="INTEGER" property="siteId" />
+    <result column="category_icon" jdbcType="VARCHAR" property="categoryIcon" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="model_id" jdbcType="INTEGER" property="modelId" />
     <result column="alone" jdbcType="BIT" property="alone" />
