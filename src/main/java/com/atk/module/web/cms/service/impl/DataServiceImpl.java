@@ -5,6 +5,7 @@ import com.atk.module.web.cms.service.ItemService;
 import com.atk.module.web.cms.vo.TCmsDataVo;
 import com.atk.mybatis.mapper.TCmsDataMapper;
 import com.atk.mybatis.model.TCmsData;
+import com.atk.mybatis.model.TCmsItem;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zhiliao.common.exception.CmsException;
@@ -20,6 +21,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -128,8 +130,32 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public PageInfo<TCmsData> page(Integer pageNumber, Integer pageSize, TCmsDataVo pojo) {
+        Long itemId = pojo.getItemId();
+        TCmsItem item = itemService.findById(itemId);
         PageHelper.startPage(pageNumber,pageSize);
+        List<TCmsData> data = new ArrayList<TCmsData>();
+        if(item.getHasChild()) {
+            List<TCmsItem> items = recursion(itemId, pojo.getSiteId());
+            for(TCmsItem i:items) {
+                pojo.setItemId(i.getItemId());
+                data.addAll(dataMapper.selectByCondition(pojo));
+            }
+            return new PageInfo(data);
+        }
         return new PageInfo(dataMapper.selectByCondition(pojo));
+    }
+
+    public List<TCmsItem> recursion(Long itemId, Integer siteId) {
+        List<TCmsItem> children = new ArrayList<TCmsItem>();
+        for(TCmsItem item:itemService.findItemListByPid(itemId, siteId)) {
+            if(item.getHasChild()) {
+                children = recursion(item.getItemId(), siteId);
+            }
+            else {
+                children.add(item);
+            }
+        }
+        return children;
     }
 
     @Override

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CicadasCms.iml" filepath="$PROJECT_DIR$/CicadasCms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QuoteCms.iml" filepath="$PROJECT_DIR$/QuoteCms.iml" />
     </modules>
   </component>
 </project>

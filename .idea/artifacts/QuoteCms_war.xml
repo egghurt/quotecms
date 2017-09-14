@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="QuoteCms:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="QuoteCms-1.0.war">
+      <element id="artifact" artifact-name="QuoteCms:war exploded" />
+    </root>
+  </artifact>
+</component>

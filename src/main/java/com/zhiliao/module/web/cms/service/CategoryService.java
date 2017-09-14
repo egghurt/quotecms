@@ -22,7 +22,7 @@ public interface CategoryService extends BaseService<TCmsCategory,Long>{
 
     Integer findPageSize(Long categoryId);
 
-    TCmsCategory findByAliasAndSiteId(String alias,Integer siteId);
+    TCmsCategory findfindByAliasAndSiteId(String alias,Integer siteId);
 
     Integer AllCount();
 }

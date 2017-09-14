@@ -23,11 +23,10 @@ import java.util.Map;
  **/
 @Service
 @Scope("prototype")
-public class IndexSilderTag extends GeneralVarTagBinding {
+public class IndexSliderTag extends GeneralVarTagBinding {
 
     @Autowired
     private SilderService silderService;
-
 
     @Override
     public void render() {

@@ -43,7 +43,11 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public String save(TCmsCategory pojo) {
         /* 将栏目名称转换为拼音设置别名 */
-        pojo.setAlias(PinyinUtil.convertLower(HtmlKit.getText(pojo.getCategoryName())));
+        if(StrUtil.isBlank(pojo.getAlias())) {
+            pojo.setAlias(PinyinUtil.convertLower(HtmlKit.getText(pojo.getCategoryName())));
+        }else {
+            pojo.setAlias(PinyinUtil.convertLower(HtmlKit.getText(pojo.getAlias())));
+        }
         /* 判断是否设置当前栏目为顶级节点 */
         if(pojo.getParentId()!=0L){
             TCmsCategory parentCategory =categoryMapper.selectByPrimaryKey(pojo.getParentId());
@@ -85,11 +89,11 @@ public class CategoryServiceImpl implements CategoryService{
             categoryMapper.updateByPrimaryKey(parentCategory);
             /*判断当前栏目是否需要继承父类模板*/
             if(StrUtil.isBlank(pojo.getContentTpl()))
-               pojo.setContentTpl(StrUtil.isBlank(parentCategory .getContentTpl()) ? CmsConst.CONTENT_TPL : parentCategory .getContentTpl());
+                pojo.setContentTpl(StrUtil.isBlank(parentCategory .getContentTpl()) ? CmsConst.CONTENT_TPL : parentCategory .getContentTpl());
             if(StrUtil.isBlank(pojo.getIndexTpl()))
-               pojo.setIndexTpl(StrUtil.isBlank(parentCategory .getIndexTpl()) ? CmsConst.INDEX_TPL : parentCategory .getIndexTpl());
+                pojo.setIndexTpl(StrUtil.isBlank(parentCategory .getIndexTpl()) ? CmsConst.INDEX_TPL : parentCategory .getIndexTpl());
             if(StrUtil.isBlank(pojo.getListTpl()))
-              pojo.setListTpl(StrUtil.isBlank(parentCategory .getListTpl()) ? CmsConst.CATEGORY_LIST_TPL :parentCategory .getListTpl());
+                pojo.setListTpl(StrUtil.isBlank(parentCategory .getListTpl()) ? CmsConst.CATEGORY_LIST_TPL :parentCategory .getListTpl());
         }else {
             pojo.setContentTpl(StrUtil.isBlank(pojo.getContentTpl()) ? CmsConst.CONTENT_TPL : pojo.getContentTpl());
             pojo.setIndexTpl(StrUtil.isBlank(pojo.getIndexTpl()) ? CmsConst.INDEX_TPL : pojo.getIndexTpl());
@@ -111,12 +115,12 @@ public class CategoryServiceImpl implements CategoryService{
                 category.setParentId(id);
                 List<TCmsCategory> categories=categoryMapper.select(category);
                 if(categories!=null&&categories.size()>0){
-                   for(TCmsCategory c :categories){
-                       TCmsContent content =new TCmsContent();
-                       content.setCategoryId(c.getCategoryId());
-                       if(contentMapper.selectCount(content)>0)
-                          throw new CmsException("当前栏目["+id+"]下有多条内容，不允许删除");
-                       categoryMapper.deleteByPrimaryKey(c.getCategoryId());
+                    for(TCmsCategory c :categories){
+                        TCmsContent content =new TCmsContent();
+                        content.setCategoryId(c.getCategoryId());
+                        if(contentMapper.selectCount(content)>0)
+                            throw new CmsException("当前栏目["+id+"]下有多条内容，不允许删除");
+                        categoryMapper.deleteByPrimaryKey(c.getCategoryId());
                     }
                     categoryMapper.deleteByPrimaryKey(id);
                 }else{
@@ -193,7 +197,7 @@ public class CategoryServiceImpl implements CategoryService{
         category.setParentId(pid);
         category.setSiteId(siteId);
         if(isNav)
-           category.setIsNav(isNav);
+            category.setIsNav(isNav);
         return categoryMapper.select(category);
     }
 
@@ -213,7 +217,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Cacheable(key = "'find-alias-'+#p0+'-siteId-'+#p1")
     @Override
-    public TCmsCategory findByAliasAndSiteId(String alias, Integer siteId) {
+    public TCmsCategory findfindByAliasAndSiteId(String alias, Integer siteId) {
         TCmsCategory category = new TCmsCategory();
         category.setAlias(alias);
         category.setSiteId(siteId);

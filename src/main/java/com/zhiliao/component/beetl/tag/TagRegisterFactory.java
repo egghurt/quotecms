@@ -97,7 +97,7 @@ public class TagRegisterFactory {
     }
 
     /* 分页标签 */
-    @Bean(name = "indexSilderTagFactory")
+    @Bean(name = "indexSliderTagFactory")
     public SpringBeanTagFactory indexSilderTagFactory(){
         SpringBeanTagFactory springBeanTagFactory = new SpringBeanTagFactory();
         springBeanTagFactory.setName("indexSliderTag");
@@ -140,7 +140,7 @@ public class TagRegisterFactory {
                                       @Qualifier("printSitePositionTagFactory") SpringBeanTagFactory printSitePositionTagFactory,
                                       @Qualifier("lucenePageTagFactory") SpringBeanTagFactory lucenePageTagFactory,
                                       @Qualifier("lucenePaginationTagFactory") SpringBeanTagFactory lucenePaginationTagFactory,
-                                      @Qualifier("indexSilderTagFactory") SpringBeanTagFactory indexSilderTagFactory,
+                                      @Qualifier("indexSliderTagFactory") SpringBeanTagFactory indexSliderTagFactory,
                                       @Qualifier("topicListTagFactory") SpringBeanTagFactory topicListTagFactory,
                                       @Qualifier("topicContentTagFactory") SpringBeanTagFactory topicContentTagFactory,
                                       @Qualifier("friendLinkListTagFactory") SpringBeanTagFactory friendLinkListTagFactory
@@ -158,7 +158,7 @@ public class TagRegisterFactory {
         tag.put("cms_site_pos",printSitePositionTagFactory);
         tag.put("cms_lucene_page",lucenePageTagFactory);
         tag.put("cms_lucene_pagination",lucenePaginationTagFactory);
-        tag.put("cms_index_silder",indexSilderTagFactory);
+        tag.put("cms_index_slider",indexSliderTagFactory);
         tag.put("cms_topic_list",topicListTagFactory);
         tag.put("cms_topic_content",topicContentTagFactory);
         tag.put("cms_friendlink",friendLinkListTagFactory);

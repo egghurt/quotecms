@@ -63,9 +63,12 @@ public class DataController {
             throw  new UnauthenticatedException();
         data.setSiteId(userVo.getSiteId());
         data.setUserId(userVo.getUserId());
+        TCmsItem item = itemService.findById(data.getItemId());
+        TCmsPattern pattern = patternService.findById(item.getPatternId());
+        String table = pattern.getTableName();
         model.addAttribute("model", dataService.page(pageNumber, pageSize, data));
         model.addAttribute("pojo", data);
-        model.addAttribute("item", itemService.findById(data.getItemId()));
+        model.addAttribute("item", item);
         return "data/data_list";
     }
 

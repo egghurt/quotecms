@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CicadasCms" />
+        <module name="QuoteCms" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CicadasCms" target="1.8" />
+      <module name="QuoteCms" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
