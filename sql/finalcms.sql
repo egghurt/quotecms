@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100121
 File Encoding         : 65001
 
-Date: 2017-09-14 16:22:33
+Date: 2017-09-22 14:12:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -171,12 +171,12 @@ CREATE TABLE `t_cms_category` (
   PRIMARY KEY (`category_id`),
   KEY `category_id` (`category_id`),
   KEY `short_name` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='分类表';
 
 -- ----------------------------
 -- Records of t_cms_category
 -- ----------------------------
-INSERT INTO `t_cms_category` VALUES ('1', 'tong', '铜', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '');
+INSERT INTO `t_cms_category` VALUES ('1', 'tong', '铜', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', '1', '0', null, '50', '1', '');
 INSERT INTO `t_cms_category` VALUES ('2', 'lv', '铝', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '');
 INSERT INTO `t_cms_category` VALUES ('3', 'qian', '铅', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '');
 INSERT INTO `t_cms_category` VALUES ('4', 'xin', '锌', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '');
@@ -187,6 +187,8 @@ INSERT INTO `t_cms_category` VALUES ('8', 'yinbizhe', '铟铋锗', '1', '0', '79
 INSERT INTO `t_cms_category` VALUES ('9', 'gu', '钴', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', 'http://www.chinacobalt.org/', null, '0', null, '50', '0', '');
 INSERT INTO `t_cms_category` VALUES ('10', 'ti', '锑', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', 'http://www.antimonychina.org/', null, '0', null, '50', '0', '');
 INSERT INTO `t_cms_category` VALUES ('11', 'gui', '硅', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', 'http://www.siliconchina.org/', null, '0', null, '50', '0', '');
+INSERT INTO `t_cms_category` VALUES ('12', 'chief column', '首席专栏', '1', '1', '81', '0', '			    ', 'category', 'category_list', 'content', '0', '', null, '0', null, '20', '1', '');
+INSERT INTO `t_cms_category` VALUES ('13', 'Antaike Research', '安泰科研究', '1', '1', '82', '0', '			    ', 'category', 'category_list', 'content', '0', '', null, '0', null, '20', '1', '');
 
 -- ----------------------------
 -- Table structure for t_cms_content
@@ -212,13 +214,14 @@ CREATE TABLE `t_cms_content` (
   `view_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '查看次数',
   PRIMARY KEY (`content_id`),
   KEY `catid` (`category_id`,`model_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='内容表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='内容表';
 
 -- ----------------------------
 -- Records of t_cms_content
 -- ----------------------------
-INSERT INTO `t_cms_content` VALUES ('1', '1', '1', '1', '79', '赞比亚今年铜产量预计小幅下滑', '铜，产量，下滑', '赞比亚今年铜产量预计小幅下滑至753,992吨，低于2016年的774,290吨，主要因Konkola铜矿产量减少', '1', '1', '', '1', '2017-09-14 16:12:34', '2017-09-14 16:12:34', '', 'admin', '8');
-INSERT INTO `t_cms_content` VALUES ('2', '1', '1', '1', '79', '再生铜产业或将迎来较好发展机遇', '再生铜', '以“创新模式绿色发展”为主题的全国再生铜产业链创新发展高峰论坛近日在江西鹰潭举行。来自全国铜产业链企业360余人参与讨论、交流与对话，与会领导、嘉宾做了精彩主题发言。', '0', '0', '', '1', '2017-09-14 16:20:13', '2017-09-14 16:20:13', '', 'admin', '2');
+INSERT INTO `t_cms_content` VALUES ('1', '1', '1', '1', '79', '赞比亚今年铜产量预计小幅下滑', '铜，产量，下滑', '赞比亚今年铜产量预计小幅下滑至753,992吨，低于2016年的774,290吨，主要因Konkola铜矿产量减少', '1', '1', '', '1', '2017-09-14 16:12:34', '2017-09-14 16:12:34', '', 'admin', '12');
+INSERT INTO `t_cms_content` VALUES ('2', '1', '1', '1', '79', '再生铜产业或将迎来较好发展机遇', '再生铜', '以“创新模式绿色发展”为主题的全国再生铜产业链创新发展高峰论坛近日在江西鹰潭举行。来自全国铜产业链企业360余人参与讨论、交流与对话，与会领导、嘉宾做了精彩主题发言。', '0', '0', '', '1', '2017-09-14 16:20:13', '2017-09-14 16:20:13', '', 'admin', '8');
+INSERT INTO `t_cms_content` VALUES ('3', '1', '1', '1', '79', '利空接踵而至 沪铜创出“七连阴”', '沪铜, 跌', '继9月5日创下近四年半高位后，沪铜便展开连续调整，昨日主力1711合约盘中更是创下50370元/吨的阶段新低，并创出“七连阴”。分析人士表示，美元暴涨以及库存增加等因素，进一步增添了沪铜期价调整压力。短期来看，价格急跌之后期价或有反弹需求，但从中线来看，本轮涨势已结束，或将进入较长时间的震荡调整期。', '1', '1', '', '1', '2017-09-18 13:18:08', '2017-09-18 13:18:08', '', 'admin', '15');
 
 -- ----------------------------
 -- Table structure for t_cms_content_articles
@@ -232,6 +235,20 @@ CREATE TABLE `t_cms_content_articles` (
 
 -- ----------------------------
 -- Records of t_cms_content_articles
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_cms_content_chief
+-- ----------------------------
+DROP TABLE IF EXISTS `t_cms_content_chief`;
+CREATE TABLE `t_cms_content_chief` (
+  `content_id` bigint(20) NOT NULL DEFAULT '0',
+  `column_content` text,
+  PRIMARY KEY (`content_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_cms_content_chief
 -- ----------------------------
 
 -- ----------------------------
@@ -249,6 +266,20 @@ CREATE TABLE `t_cms_content_news` (
 -- ----------------------------
 INSERT INTO `t_cms_content_news` VALUES ('1', '<p>据外电9月11日消息，赞比亚矿业部周一称，赞比亚今年铜产量预计小幅下滑至753,992吨，低于2016年的774,290吨，主要因Konkola铜矿产量减少。</p><p>赞比亚矿业部常务秘书Paul Chanda称，Konkola铜矿产量今年预计减少40%。Lumwana铜矿产量预计减少15%。</p><p>赞比亚政府6月曾称，今年铜产量预计增至85万吨，因现有铜矿的扩张和正在进行的绿地项目。</p><p>行业组织赞比亚矿业协会称，产量将取决于电力供应、基础设施以及财政和监管的稳定性。</p><p>来源： 文华财经&nbsp; 编辑：安泰科 车国俊</p><p>免责申明：安泰科金属报价网为安泰科(上海)信息科技有限公司运营，刊登此文目的在于传播更多有色金属相关信息，与本公司立场无关!本公司不保证其内容的准确性、可靠性和有效性，本版文章的原创性以及文中陈述文字和内容并未经过本站证实，对本文以及其中全部或者部分内容、文字的真实性、完整性、及时性，数据及图表的准确性不作任何保证或承诺，请读者仅作参考，不作为任何买与卖的建议，并请自行核实相关内容。据此操作，风险自担。</p><p><br></p>');
 INSERT INTO `t_cms_content_news` VALUES ('2', '<p>以“创新模式绿色发展”为主题的全国再生铜产业链创新发展高峰论坛近日在江西鹰潭举行。来自全国铜产业链企业360余人参与讨论、交流与对话，与会领导、嘉宾做了精彩主题发言。</p><p>论坛上，中国有色金属工业协会再生金属分会副会长兼秘书长王吉位介绍，2016年前三季度铜价一直处于近几年的低位，精废铜差价也低于废铜回收 再生成本。部分企业减少了对废铜的利用量，改用电解铜。全年再生铜产量为285万吨，与2015年相比下降了1.72%。2017年初由于精废铜价差拉大 刺激废铜需求上升，国内废铜供应增加，进口量也随之增加。海关数据显示，今年1～6月我国共进口185.17万吨的铜废料，同比增长18.7%，加上国内 废铜的利用量，预计2017年上半年国内再生铜产量可达135万吨，同比增加8%。总的来看，2017年上半年再生铜产业总体呈现出生产平稳运行，价格高 位震荡，效益持续向好的态势。但是，由于产能过剩、创新不足、融资困难、成本上升等结构性矛盾尚未取得全面突破，价格上涨仍是产业效益回升的主要因素，产 业发展持续向好的基础仍有待巩固。</p><p>王吉位对当前铜产业发展存在的问题进行了全面分析。一是国内目前废铜的使用格局仍以再生精炼铜为主，直接利用比例较低，产业结构不合理。二是多 年来再生铜产品以通用、低端工业原料为主，产品同质化严重，附加值不高。三是拆解处理技术较落后，只有少数的大型拆解企业采用半机械化拆解处理方式;环保 技术基本沿用原生冶金等行业环保装备，没有形成再生铜专业特色的环保技术装备，分选及环保技术急需升级。四是目前我国再生铜企处理的含铜废料大部分为分选 好的铜废料，对于含多种金属资源的铜废料的协同处理能力较弱，有待进一步加强。</p><p>他最后建议：一要充分利用国家政策支持，加快创建国内再生铜原料的回收体系建设。通过资本运作，实现产业整合，逐步形成再生铜产业集聚区，培育 一批废铜资源绿色专业化的回收处理公司或产业联盟，使废铜资源进入规范企业再生利用。二要深入实施创新驱动发展战略，积极培育再生铜产业经济发展新动力。 建立以再生铜企业为主体的技术创新体系，发挥科研院校和大型企业的科研创新优势，加快推进产业链、创新链融合。三要延伸产业链，扩大产品应用领域。在再生 铜新材料研发和环保绿色产品制造方面等取得突破。四要抱团出海，开拓再生铜产业新疆域。要借“一带一路”建设的东风，与周边国家开展产能合作、进行海外资 源与产业布局。</p><p>随着禁止洋垃圾入境政策的逐步推进，进口可用作原料的固体废物标准提高，国家环境保护和监管力度加大，治理“小散乱污”企业进程加快，我国废旧 金属的进口种类和数量将大幅减少，废铜的进口渠道、方式、品种及业态也将发生较大的改变，我国再生铜产业可能面临着较大的变化，也可能要迎来较好的发展机 遇。</p><p>来源：中国矿业报社&nbsp; 编辑：安泰科 车国俊</p><p>免责申明：安泰科金属报价网为安泰科(上海)信息科技有限公司运营，刊登此文目的在于传播更多有色金属相关信息，与本公司立场无关!本公司不保证其内容的准确性、可靠性和有效性，本版文章的原创性以及文中陈述文字和内容并未经过本站证实，对本文以及其中全部或者部分内容、文字的真实性、完整性、及时性，数据及图表的准确性不作任何保证或承诺，请读者仅作参考，不作为任何买与卖的建议，并请自行核实相关内容。据此操作，风险自担。</p><p><br></p>');
+INSERT INTO `t_cms_content_news` VALUES ('3', '<p>继9月5日创下近四年半高位后，沪铜便展开连续调整，昨日主力1711合约盘中更是创下50370元/吨的阶段新低，并创出“七连阴”。分析人士表示，美元暴涨以及库存增加等因素，进一步增添了沪铜期价调整压力。短期来看，价格急跌之后期价或有反弹需求，但从中线来看，本轮涨势已结束，或将进入较长时间的震荡调整期。</p><p>沪铜连续阴跌</p><p>周四，沪铜1711合约跳空低开，随后维持低位调整，盘中最低逼近50000元/吨关口，并创下近一个月低位，盘终收报50380元/吨，跌890元或1.74%。若以9月5日盘中高点53830元/吨以来的价格表现来看，该合约累计跌3450元/吨或6.41%。</p><p>有分析表示，隔夜美元出现暴涨，令铜价承压。美国白宫预算管理办公室主任表示称，税收计划披露的目标日期是9月25日，这一言论爆出之后，美元出现大幅拉升。</p><p>屋漏偏逢连夜雨。伴随着铜价的回落，上期所和伦交所库存一改连续减少的趋势，出现迅猛增加。数据显示，9月13日上期所铜增加6702吨至71145吨，LME铜库存增27850吨至246575吨。</p><p>“库存回流证实之前的猜测，即贸易商通过搬运库存拉高铜价，目标达到后库存回流交易所。”迈科期货分析师表示。</p><p>方正中期期货研究员相阳表示，近期，沪铜出现逾3000元/吨的跌幅，说明前期价格涨幅过于猛烈。目前来看，铜市场的供给和需求两端均较为平稳，但由于7月和8月或透支了一定的涨幅，或最终造成淡季不淡旺季不旺的格局。相对来说，宏观上的情绪或经历较大波动，由年中证伪预期落空的需求修复到全面乐观，转向对真实需求的再度思考和验证。</p><p>中期筑底预期增强</p><p>基本面上，据迈科期货分析师介绍，伴随着中国消费回升，进口增加、精矿加工费谈判之前炒作供应短缺等都会在9月、10月逐步兑现，下游有逢低补货需求，而基金巨大的净多头寸也令其有维持价格的能力。</p><p>现货方面，9月以来，下游消费环比回升，环保限制造成废铜进口受阻，国内库存温和下降，进口窗口重新打开。连续急跌后，废铜对电铜价差收窄到6300元，废铜明显抗跌，支撑因素开始体现。由于当前铜价回到一个月前的水平，估计会吸引下游买货及点价。</p><p>展望后市，华泰期货研究所金属研究员吴相认为，短期来看，上周，铜精矿加工费小幅提升，铜矿贸易商市场有所活跃。另外，铜进口盈亏有所改善，整体上也促进了市场交投。不过，干净矿报价依然较为坚挺;8月铜精矿进口量依然变化不大，精炼铜进口环比继续持平，总精炼铜供应依然受到限制。另外，8月铜杆开工率环比有所回升，整体供需面依然较强。中期来看，全球铜精矿供应2017年刚性增量比较小，而弹性增量主要取决于价格，而精炼产能虽然投放较多，但受限于铜精矿供应，实际供应增量不足以使得铜价格再度下跌，因此，中期铜价筑底预期明显。</p><p>从技术上看，迈科期货分析师表示，结合沪铜长期形态，50000元/吨平台或是中线强支撑区。目前价格急跌至此，短线有反弹需求，但从中线角度看，本轮涨势已结束，将进入较长时间的震荡调整期。操作上，建议下游逢低买货或少量备货，投机性短线可参与反弹，中线目前不是入场时间。</p><p>（来源：中国证券报-中证网）</p><p><br></p>');
+
+-- ----------------------------
+-- Table structure for t_cms_content_research
+-- ----------------------------
+DROP TABLE IF EXISTS `t_cms_content_research`;
+CREATE TABLE `t_cms_content_research` (
+  `content_id` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`content_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_cms_content_research
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_cms_data
@@ -265,16 +296,43 @@ CREATE TABLE `t_cms_data` (
   `input_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '发布时间',
   `update_date` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `check_date` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT '审核时间',
+  `recent` tinyint(1) NOT NULL DEFAULT '0' COMMENT '首页显示',
   `remark` varchar(255) DEFAULT '' COMMENT '说明',
   PRIMARY KEY (`data_id`),
   KEY `catid` (`item_id`,`pattern_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='数据表';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='数据表';
 
 -- ----------------------------
 -- Records of t_cms_data
 -- ----------------------------
-INSERT INTO `t_cms_data` VALUES ('1', '1', '1', '14', '1', '1#铜', '0', '2017-09-12 13:44:08', '2017-09-12 13:44:09', '2017-09-12 13:44:09', null);
-INSERT INTO `t_cms_data` VALUES ('2', '1', '1', '15', '1', '1#铅', '0', '2017-09-12 13:44:09', '2017-09-12 13:44:09', '2017-09-12 13:44:09', null);
+INSERT INTO `t_cms_data` VALUES ('1', '1', '1', '14', '1', '1#铜', '0', '2017-09-20 11:07:01', '2017-09-20 11:07:01', '2017-09-20 11:07:01', '0', null);
+INSERT INTO `t_cms_data` VALUES ('2', '1', '1', '15', '1', '1#铅', '0', '2017-09-20 11:07:01', '2017-09-20 11:07:01', '2017-09-20 11:07:01', '0', null);
+INSERT INTO `t_cms_data` VALUES ('3', '1', '1', '16', '1', '0#锌', '0', '2017-09-20 11:07:01', '2017-09-20 11:07:01', '2017-09-20 11:07:01', '0', null);
+INSERT INTO `t_cms_data` VALUES ('4', '1', '1', '43', '1', '山东市场', '0', '2017-09-21 14:35:01', '2017-09-21 14:35:01', '2017-09-21 14:35:01', '0', null);
+INSERT INTO `t_cms_data` VALUES ('5', '1', '1', '44', '1', '河南市场', '0', '2017-09-21 14:35:01', '2017-09-21 14:35:01', '2017-09-21 14:35:01', '0', null);
+INSERT INTO `t_cms_data` VALUES ('6', '1', '1', '14', '1', '1#铜', '0', '2017-09-21 14:17:20', '2017-09-21 14:17:20', '2017-09-21 14:17:20', '0', null);
+INSERT INTO `t_cms_data` VALUES ('7', '1', '1', '15', '1', '1#铅', '0', '2017-09-21 14:17:20', '2017-09-21 14:17:20', '2017-09-21 14:17:20', '0', null);
+INSERT INTO `t_cms_data` VALUES ('8', '1', '1', '16', '1', '0#锌', '0', '2017-09-21 14:17:20', '2017-09-21 14:17:20', '2017-09-21 14:17:20', '0', null);
+INSERT INTO `t_cms_data` VALUES ('9', '1', '1', '14', '1', '1#铜', '0', '2017-09-21 14:31:57', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('10', '1', '1', '15', '1', '1#铅', '0', '2017-09-21 14:31:57', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('11', '1', '1', '16', '1', '0#锌', '0', '2017-09-21 14:31:57', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('12', '1', '1', '17', '1', '1#锌', '0', '2017-09-21 14:31:58', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('13', '1', '1', '18', '1', '1#镍', '0', '2017-09-21 14:31:58', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('14', '1', '1', '19', '1', '1#锡', '0', '2017-09-21 14:31:58', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('15', '1', '1', '20', '1', '铝锭华东', '0', '2017-09-21 14:31:58', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('16', '1', '1', '21', '1', '铝锭华南', '0', '2017-09-21 14:31:58', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('17', '1', '1', '22', '1', '铝锭河南', '0', '2017-09-21 14:31:58', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('18', '1', '1', '23', '1', '铝锭山东', '0', '2017-09-21 14:31:58', '2017-09-21 14:32:00', '2017-09-21 14:31:59', '1', null);
+INSERT INTO `t_cms_data` VALUES ('19', '1', '1', '43', '1', '山东市场', '0', '2017-09-21 14:40:06', '2017-09-21 14:40:09', '2017-09-21 14:40:08', '1', null);
+INSERT INTO `t_cms_data` VALUES ('20', '1', '1', '44', '1', '河南市场', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:09', '2017-09-21 14:40:08', '1', null);
+INSERT INTO `t_cms_data` VALUES ('21', '1', '1', '45', '1', '山西市场', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:09', '2017-09-21 14:40:08', '1', null);
+INSERT INTO `t_cms_data` VALUES ('22', '1', '1', '46', '1', '广西市场', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:09', '2017-09-21 14:40:08', '1', null);
+INSERT INTO `t_cms_data` VALUES ('23', '1', '1', '47', '1', '国产非中铝现货氧化铝', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:09', '2017-09-21 14:40:08', '1', null);
+INSERT INTO `t_cms_data` VALUES ('24', '1', '1', '48', '1', '港口氧化铝均价', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:09', '2017-09-21 14:40:08', '1', null);
+INSERT INTO `t_cms_data` VALUES ('25', '1', '1', '49', '1', '当月长单价', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:09', '2017-09-21 14:40:08', '1', null);
+INSERT INTO `t_cms_data` VALUES ('26', '1', '1', '50', '1', '澳洲现货氧化铝均价', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:09', '2017-09-21 14:40:08', '1', null);
+INSERT INTO `t_cms_data` VALUES ('27', '1', '1', '51', '1', '内蒙地区', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:10', '2017-09-21 14:40:09', '1', null);
+INSERT INTO `t_cms_data` VALUES ('28', '1', '1', '52', '1', '贵州地区', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:10', '2017-09-21 14:40:09', '1', null);
 
 -- ----------------------------
 -- Table structure for t_cms_data_fee
@@ -287,6 +345,20 @@ CREATE TABLE `t_cms_data_fee` (
 
 -- ----------------------------
 -- Records of t_cms_data_fee
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_cms_data_premium_discount
+-- ----------------------------
+DROP TABLE IF EXISTS `t_cms_data_premium_discount`;
+CREATE TABLE `t_cms_data_premium_discount` (
+  `data_id` bigint(20) NOT NULL DEFAULT '0',
+  `premium_discount` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`data_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_cms_data_premium_discount
 -- ----------------------------
 
 -- ----------------------------
@@ -304,8 +376,34 @@ CREATE TABLE `t_cms_data_quote` (
 -- ----------------------------
 -- Records of t_cms_data_quote
 -- ----------------------------
-INSERT INTO `t_cms_data_quote` VALUES ('1', '51400', '51450', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('2', '19200', '19300', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('1', '50780', '50830', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('2', '20500', '20550', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('3', '25980', '26080', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('4', '3460', '3500', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('5', '3450', '3500', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('6', '50720', '50770', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('7', '20750', '20850', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('8', '25930', '26030', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('9', '50270', '50320', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('10', '21300', '21400', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('11', '25920', '26020', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('12', '25860', '25920', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('13', '88700', '89400', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('14', '142500', '144000', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('15', '16590', '16650', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('16', '16620', '16700', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('17', '16460', '16520', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('18', '16590', '16650', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('19', '3500', '3550', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('20', '3500', '3540', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('21', '3500', '3540', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('22', '3350', '3400', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('23', '3485', '3485', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('24', '3300', '3350', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('25', '2794', '2794', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('26', '389', '389', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('27', '3500', '3550', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('28', '3360', '3420', '0');
 
 -- ----------------------------
 -- Table structure for t_cms_data_ratio
@@ -393,7 +491,7 @@ CREATE TABLE `t_cms_item` (
   PRIMARY KEY (`item_id`),
   KEY `category_id` (`item_id`),
   KEY `short_name` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COMMENT='分类表';
 
 -- ----------------------------
 -- Records of t_cms_item
@@ -403,9 +501,9 @@ INSERT INTO `t_cms_item` VALUES ('2', 'jiagongfei', '加工费', '1', '0', '2', 
 INSERT INTO `t_cms_item` VALUES ('3', 'hulunbizhi', '沪伦比值', '1', '0', '3', '0', 'category_list', '0', '0', null);
 INSERT INTO `t_cms_item` VALUES ('4', 'kucun', '库存', '1', '0', '4', '0', 'category_list', '1', '0', null);
 INSERT INTO `t_cms_item` VALUES ('5', 'jibenjinshu', '基本金属', '1', '1', '1', '0', 'category_list', '1', '0', null);
-INSERT INTO `t_cms_item` VALUES ('6', 'jibenjinshushengtieshui', '基本金属升贴水', '1', '1', '1', '0', 'category_list', '0', '0', null);
-INSERT INTO `t_cms_item` VALUES ('7', 'yanghualv', '氧化铝', '1', '1', '1', '0', 'category_list', '0', '0', null);
-INSERT INTO `t_cms_item` VALUES ('8', 'xiaojinshu', '小金属', '1', '1', '1', '0', 'category_list', '0', '0', null);
+INSERT INTO `t_cms_item` VALUES ('6', 'jibenjinshushengtieshui', '基本金属升贴水', '1', '1', '1', '0', 'category_list', '1', '0', null);
+INSERT INTO `t_cms_item` VALUES ('7', 'yanghualv', '氧化铝', '1', '1', '1', '0', 'category_list', '1', '0', null);
+INSERT INTO `t_cms_item` VALUES ('8', 'xiaojinshu', '小金属', '1', '1', '1', '0', 'category_list', '1', '0', null);
 INSERT INTO `t_cms_item` VALUES ('9', 'tongjingkuang', '铜精矿', '1', '2', '2', '0', 'category_list', '0', '0', null);
 INSERT INTO `t_cms_item` VALUES ('10', 'qianjingkuang', '铅精矿', '1', '2', '2', '0', 'category_list', '0', '0', null);
 INSERT INTO `t_cms_item` VALUES ('11', 'xinjingkuang', '锌精矿', '1', '2', '2', '0', 'category_list', '0', '0', null);
@@ -413,6 +511,72 @@ INSERT INTO `t_cms_item` VALUES ('12', 'LME', 'LME', '1', '4', '4', '0', 'catego
 INSERT INTO `t_cms_item` VALUES ('13', 'SHFE', 'SHFE', '1', '4', '4', '0', 'category_list', '0', '0', null);
 INSERT INTO `t_cms_item` VALUES ('14', '1#tong', '1#铜', '1', '5', '1', '0', 'category_list', '0', '0', '10');
 INSERT INTO `t_cms_item` VALUES ('15', '1#qian', '1#铅', '1', '5', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('16', '0#xin', '0#锌', '1', '5', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('17', '1#xin', '1#锌', '1', '5', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('18', '1#nie', '1#镍', '1', '5', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('19', '1#xi', '1#锡', '1', '5', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('20', 'lvdinghuadong', '铝锭华东', '1', '5', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('21', 'lvdinghuanan', '铝锭华南', '1', '5', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('22', 'lvdinghenan', '铝锭河南', '1', '5', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('23', 'lvdingshandong', '铝锭山东', '1', '5', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('24', 'tong', '铜', '1', '6', '5', '0', 'category_list', '1', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('25', 'lv', '铝', '1', '6', '5', '0', 'category_list', '1', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('26', 'qian', '铅', '1', '6', '5', '0', 'category_list', '1', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('27', 'xin', '锌', '1', '6', '5', '0', 'category_list', '1', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('28', 'xi', '锡', '1', '6', '5', '0', 'category_list', '1', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('29', 'nie', '镍', '1', '6', '5', '0', 'category_list', '1', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('30', 'haotong', '好铜', '1', '24', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('31', 'pingshuitong', '平水铜', '1', '24', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('32', 'shifatong', '湿法铜', '1', '24', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('33', 'huadong', '华东', '1', '25', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('34', 'huanan', '华南', '1', '25', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('35', 'chihong', '驰宏', '1', '26', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('36', 'baiyin/shuangyan', '白银/双燕', '1', '26', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('37', 'shuangyan/yuguang', '双燕/豫光', '1', '27', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('38', 'jiulong/qinxin', '久隆/秦锌', '1', '27', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('39', 'yunxi', '云锡', '1', '28', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('40', 'nanshan/jinlong', '南山/金龙', '1', '28', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('41', 'jinchuannie', '金川镍', '1', '29', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('42', 'enie', '俄镍', '1', '29', '5', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('43', 'shandongshichang', '山东市场', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('44', 'henanshichang', '河南市场', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('45', 'shanxishichang', '山西市场', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('46', 'guangxishichang', '广西市场', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('47', 'guochanfeizhonglvxianhuoyanghualv', '国产非中铝现货氧化铝', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('48', 'gangkouyanghualvjunjia', '港口氧化铝均价', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('49', 'dangyuezhangdanjia', '当月长单价', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('50', 'aozhouxianhuoyanghualvjunjia', '澳洲现货氧化铝均价', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('51', 'neimengdiqu', '内蒙地区', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('52', 'guizhoudiqu', '贵州地区', '1', '7', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('53', 'jinshugu', '金属钴', '1', '8', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('54', 'jinshugui', '金属硅', '1', '8', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('55', 'xiding[99.99%]', '硒锭[99.99%]', '1', '8', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('56', '1#guangliangtong', '1#光亮铜', '1', '8', '1', '0', 'category_list', '0', '0', '10');
+INSERT INTO `t_cms_item` VALUES ('57', '', '高纯镓', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('58', '', '粗铟', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('59', '', '氧化锑99.5%FOB', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('60', '', '氧化铋', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('61', '', '白银', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('62', '', '锑精矿50%', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('63', '', '硒锭[98%]', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('64', '', '硒粉', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('65', '', '黑钨精矿', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('66', '', '工业镓', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('67', '', '锑锭99.65%', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('68', '', '四氧化三钴', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('69', '', '精铟', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('70', '', '碲锭', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('71', '', '多晶硅', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('72', '', '二氧化锗', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('73', '', '二氧化硒', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('74', '', '锗锭', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('75', '', '精铟离岸价', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('76', '', '氯化钴', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('77', '', '镁锭', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('78', '', '氧化锑99.5%', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('79', '', '精铋', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('80', '', '钼铁', '1', '8', '1', '0', 'category_list', '0', '0', '50');
+INSERT INTO `t_cms_item` VALUES ('81', '', '锑锭99.65%FOB', '1', '8', '1', '0', 'category_list', '0', '0', '50');
 
 -- ----------------------------
 -- Table structure for t_cms_linkage
@@ -442,20 +606,22 @@ CREATE TABLE `t_cms_linkage` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_cms_model`;
 CREATE TABLE `t_cms_model` (
-  `model_id` int(11) NOT NULL,
+  `model_id` int(11) NOT NULL AUTO_INCREMENT,
   `model_name` varchar(255) DEFAULT NULL COMMENT '模型名称',
   `table_name` varchar(255) DEFAULT NULL COMMENT '模型表名称',
   `site_id` bigint(20) DEFAULT NULL COMMENT '站点id',
   `des` varchar(255) DEFAULT '' COMMENT '字段描述',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`model_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='模型表';
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COMMENT='模型表';
 
 -- ----------------------------
 -- Records of t_cms_model
 -- ----------------------------
 INSERT INTO `t_cms_model` VALUES ('79', '新闻模型', 'news', '1', '新闻模版', '1');
 INSERT INTO `t_cms_model` VALUES ('80', '文章模型', 'articles', '1', '文章模型', '1');
+INSERT INTO `t_cms_model` VALUES ('81', '首席专栏', 'chief', '1', '首席热点专栏', '1');
+INSERT INTO `t_cms_model` VALUES ('82', '安泰科研究', 'research', '1', '安泰科研究', '1');
 
 -- ----------------------------
 -- Table structure for t_cms_model_filed
@@ -474,16 +640,14 @@ CREATE TABLE `t_cms_model_filed` (
   `is_primary` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为主键',
   `setting` varchar(255) DEFAULT '',
   PRIMARY KEY (`filed_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8 COMMENT='模型字段';
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=utf8 COMMENT='模型字段';
 
 -- ----------------------------
 -- Records of t_cms_model_filed
 -- ----------------------------
-INSERT INTO `t_cms_model_filed` VALUES ('127', '81', 'xingming', 'input', '张三', 'char', '姓名', '0', '8', '0', '');
-INSERT INTO `t_cms_model_filed` VALUES ('128', '81', 'nianling', 'input', '0', 'int', '年龄', '0', '3', '0', '');
-INSERT INTO `t_cms_model_filed` VALUES ('131', '82', 'qiyemingcheng', 'input', '', 'varchar', '企业名称', '0', '255', '0', '');
 INSERT INTO `t_cms_model_filed` VALUES ('133', '80', 'article_content', 'editor', '', 'mediumText', '文章内容', '1', '0', '0', '');
 INSERT INTO `t_cms_model_filed` VALUES ('134', '79', 'news_content', 'editor', '', 'mediumText', '新闻内容', '1', '0', '0', '');
+INSERT INTO `t_cms_model_filed` VALUES ('135', '81', 'column_content', 'editor', '', 'mediumText', '文章内容', '0', '0', '0', '');
 
 -- ----------------------------
 -- Table structure for t_cms_pattern
@@ -497,7 +661,7 @@ CREATE TABLE `t_cms_pattern` (
   `des` varchar(255) DEFAULT '' COMMENT '字段描述',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`pattern_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='模型表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='模型表';
 
 -- ----------------------------
 -- Records of t_cms_pattern
@@ -506,6 +670,7 @@ INSERT INTO `t_cms_pattern` VALUES ('1', '安泰科报价', 'quote', '1', '安�
 INSERT INTO `t_cms_pattern` VALUES ('2', '加工费', 'fee', '1', '加工费', '1');
 INSERT INTO `t_cms_pattern` VALUES ('3', '沪伦比值', 'ratio', '1', '沪伦比值', '1');
 INSERT INTO `t_cms_pattern` VALUES ('4', '库存', 'stock', '1', '库存', '1');
+INSERT INTO `t_cms_pattern` VALUES ('5', '升贴水', 'premium_discount', '1', '基本金属升贴水', '1');
 
 -- ----------------------------
 -- Table structure for t_cms_pattern_field
@@ -524,7 +689,7 @@ CREATE TABLE `t_cms_pattern_field` (
   `is_primary` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为主键',
   `setting` varchar(255) DEFAULT '',
   PRIMARY KEY (`field_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='模型字段';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='模型字段';
 
 -- ----------------------------
 -- Records of t_cms_pattern_field
@@ -532,6 +697,7 @@ CREATE TABLE `t_cms_pattern_field` (
 INSERT INTO `t_cms_pattern_field` VALUES ('1', '1', 'low', 'input', '0', 'int', '最低价', '0', '11', '0', '');
 INSERT INTO `t_cms_pattern_field` VALUES ('3', '1', 'high', 'input', '0', 'int', '最高价', '0', '11', '0', '');
 INSERT INTO `t_cms_pattern_field` VALUES ('4', '1', 'average', 'input', '0', 'int', '均价', '0', '11', '0', '');
+INSERT INTO `t_cms_pattern_field` VALUES ('6', '5', 'premium_discount', 'input', '0', 'int', '升贴水', '1', '11', '0', '');
 
 -- ----------------------------
 -- Table structure for t_cms_search_words
@@ -660,7 +826,7 @@ CREATE TABLE `t_cms_user_item` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`item_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='管理员权限';
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8 COMMENT='管理员权限';
 
 -- ----------------------------
 -- Records of t_cms_user_item
@@ -668,10 +834,34 @@ CREATE TABLE `t_cms_user_item` (
 INSERT INTO `t_cms_user_item` VALUES ('3', '177', '2');
 INSERT INTO `t_cms_user_item` VALUES ('4', '177', '9');
 INSERT INTO `t_cms_user_item` VALUES ('5', '177', '10');
-INSERT INTO `t_cms_user_item` VALUES ('10', '1', '1');
-INSERT INTO `t_cms_user_item` VALUES ('11', '1', '5');
-INSERT INTO `t_cms_user_item` VALUES ('12', '1', '14');
-INSERT INTO `t_cms_user_item` VALUES ('13', '1', '15');
+INSERT INTO `t_cms_user_item` VALUES ('92', '1', '1');
+INSERT INTO `t_cms_user_item` VALUES ('93', '1', '5');
+INSERT INTO `t_cms_user_item` VALUES ('94', '1', '14');
+INSERT INTO `t_cms_user_item` VALUES ('95', '1', '15');
+INSERT INTO `t_cms_user_item` VALUES ('96', '1', '16');
+INSERT INTO `t_cms_user_item` VALUES ('97', '1', '17');
+INSERT INTO `t_cms_user_item` VALUES ('98', '1', '18');
+INSERT INTO `t_cms_user_item` VALUES ('99', '1', '19');
+INSERT INTO `t_cms_user_item` VALUES ('100', '1', '20');
+INSERT INTO `t_cms_user_item` VALUES ('101', '1', '21');
+INSERT INTO `t_cms_user_item` VALUES ('102', '1', '22');
+INSERT INTO `t_cms_user_item` VALUES ('103', '1', '23');
+INSERT INTO `t_cms_user_item` VALUES ('104', '1', '6');
+INSERT INTO `t_cms_user_item` VALUES ('105', '1', '24');
+INSERT INTO `t_cms_user_item` VALUES ('106', '1', '30');
+INSERT INTO `t_cms_user_item` VALUES ('107', '1', '31');
+INSERT INTO `t_cms_user_item` VALUES ('108', '1', '32');
+INSERT INTO `t_cms_user_item` VALUES ('109', '1', '7');
+INSERT INTO `t_cms_user_item` VALUES ('110', '1', '43');
+INSERT INTO `t_cms_user_item` VALUES ('111', '1', '44');
+INSERT INTO `t_cms_user_item` VALUES ('112', '1', '45');
+INSERT INTO `t_cms_user_item` VALUES ('113', '1', '46');
+INSERT INTO `t_cms_user_item` VALUES ('114', '1', '47');
+INSERT INTO `t_cms_user_item` VALUES ('115', '1', '48');
+INSERT INTO `t_cms_user_item` VALUES ('116', '1', '49');
+INSERT INTO `t_cms_user_item` VALUES ('117', '1', '50');
+INSERT INTO `t_cms_user_item` VALUES ('118', '1', '51');
+INSERT INTO `t_cms_user_item` VALUES ('119', '1', '52');
 
 -- ----------------------------
 -- Table structure for t_cms_user_site
@@ -728,7 +918,7 @@ CREATE TABLE `t_sys_log` (
   `username` varchar(255) DEFAULT '',
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7194 DEFAULT CHARSET=utf8 COMMENT='日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=7444 DEFAULT CHARSET=utf8 COMMENT='日志表';
 
 -- ----------------------------
 -- Records of t_sys_log
@@ -7684,6 +7874,256 @@ INSERT INTO `t_sys_log` VALUES ('7190', '[类名]:com.zhiliao.module.web.cms.Mod
 INSERT INTO `t_sys_log` VALUES ('7191', '[类名]:com.zhiliao.module.web.cms.ContentController <br/>[方法]:input <br>[参数]:categoryId=1&_=1505376562129& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-14 16:09:22', ' - ', '内容添加');
 INSERT INTO `t_sys_log` VALUES ('7192', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=8fb1f036fb2a4edaaf01292e3352d85c&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-14 16:12:56', ' - ', '后台用户登陆');
 INSERT INTO `t_sys_log` VALUES ('7193', '[类名]:com.zhiliao.module.web.cms.ContentController <br/>[方法]:input <br>[参数]:categoryId=1&_=1505377143578& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-14 16:19:03', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7194', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=b960a9356faa4d8ebbf687d221461507&username=admin&password=123456&verifyCode=6ff6& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 13:16:06', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7195', '[类名]:com.zhiliao.module.web.cms.ContentController <br/>[方法]:input <br>[参数]:categoryId=1&_=1505711822820& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 13:17:02', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7196', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=e6102ab4e1ca49a6a709164419148fb0&username=admin&password=123456& <br/>[  IP ]:127.0.0.1', '2017-09-18 13:18:29', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7197', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=1390b3d624fd43a69f0704766fc202ab&username=admin&password=123456&verifyCode=5g3w& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 13:56:15', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7198', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505714218675& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 13:56:58', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7199', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505714228495& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 13:57:08', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7200', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=5bffa32bf4304c018b2ddb7792a09782&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:39:17', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7201', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505716761015& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:39:21', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7202', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=1&_=1505716775167& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:39:35', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7203', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=7&_=1505716928648& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:42:08', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7204', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505716937302& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:42:17', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7205', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505716944763& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:42:24', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7206', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505716954555& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:42:34', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7207', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=11&_=1505717091364& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:44:51', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7208', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505717106802& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:45:06', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7209', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=2c3def4a038a47ff85397bb9f0ab1667&username=admin&password=123456&verifyCode=y6w2& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:49:46', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7210', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505717394567& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:49:54', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7211', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=43e482a5e2ea492188c99c0972c12563&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:51:39', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7212', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505717505905& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:51:45', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7213', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505717522084& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:52:02', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7214', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505717631067& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:53:51', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7215', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=11&_=1505717801500& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:56:41', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7216', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=11&_=1505717809802& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:56:49', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7217', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505717941922& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:59:01', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7218', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505717952579& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 14:59:12', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7219', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=3f71ec0fd77c432c8a9698cb2b05ef99&username=admin&password=123456& <br/>[  IP ]:127.0.0.1', '2017-09-18 15:00:49', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7220', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505718053514& <br/>[  IP ]:127.0.0.1', '2017-09-18 15:00:53', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7221', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505718168809& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:02:48', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7222', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505718176026& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:02:56', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7223', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505718219874& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:03:39', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7224', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=e22ca269f4f0427290e68b1b5c9c245f&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:06:03', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7225', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505718371218& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:06:11', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7226', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505718383243& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:06:23', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7227', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=bc18c849f73c47938c0abfb76c1c6f38&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:19:35', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7228', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505719177819& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:19:37', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7229', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505719247769& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:20:47', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7230', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=1c09fa5c01924123b70366012b13c9c0&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:29:16', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7231', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=8af9917c05cc47a595361201b2443aae&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:31:57', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7232', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=8a8586b32a3042a994a7a446a4627b45&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:35:49', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7233', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=d9705cfc30524ef5a05c4bb165df982b&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:37:28', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7234', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=8eae8518ace2407a877e6aca8cec8a50&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:39:07', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7235', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=6593ca94bc6b4a4b8059ec520b8cedf7&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:51:40', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7236', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=1&_=1505721109565& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:51:49', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7237', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=2&_=1505721119179& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 15:51:59', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7238', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=1b0aebb396364e5c820583da5559e70b&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:32:06', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7239', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723529878& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:32:09', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7240', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=5&_=1505723531466& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:32:11', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7241', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723535130& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:32:15', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7242', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723616557& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:33:36', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7243', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723616739& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:33:36', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7244', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723635689& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:33:55', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7245', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723635879& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:33:55', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7246', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723662526& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:34:22', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7247', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723662719& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:34:22', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7248', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723677487& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:34:37', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7249', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723677656& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:34:37', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7250', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723734363& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:35:34', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7251', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723734593& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:35:34', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7252', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723750474& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:35:50', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7253', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723750698& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:35:50', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7254', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723766927& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:36:06', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7255', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723767137& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:36:07', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7256', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723781704& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:36:21', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7257', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505723781921& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:36:21', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7258', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:input <br>[参数]:itemId=14&_=1505723822886& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:37:02', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7259', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=786ce214b6e94222b96bce69bdf5475e&username=admin&password=123456&verifyCode=e4fd& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:38:02', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7260', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:_=1505723907405& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:38:27', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7261', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=609494be52404301ab3f48be4db697e0&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:39:50', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7262', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=de5b613d925e48169b0ce4d8a7d5b54e&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:45:41', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7263', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=84056bf9a9794cb2bd56dae15d029883&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:46:35', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7264', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=&_=1505724426399& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:47:06', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7265', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=86d94c91da9b4a01897905cf3163582e&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:51:39', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7266', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=2&_=1505724735210& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-18 16:52:15', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7267', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=630a849c8cae4354b9496031c6fc9a14&username=admin&password=123456& <br/>[  IP ]:127.0.0.1', '2017-09-18 16:52:53', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7268', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=027e2e5faaa34cf88f011aa4f73a2936&username=admin&password=123456&verifyCode=ade2& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 08:57:49', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7269', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=56cc8ba56c144931aa3a7b8a0edf4500&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:12:22', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7270', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=5ebb57f397cf4adaa85e64989c6b33dd&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:13:31', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7271', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=ad2bc965fc8d4f4980d20c393144027b&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:16:43', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7272', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=15245fc9e5d646d9b1e07a4786a816d4&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:24:49', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7273', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=e581c1dd976e4ed08028b7a092b67450&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:44:43', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7274', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=ab597c944982430eaacef5ef1399c472&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:45:31', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7275', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=1&_=1505785543384& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:45:43', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7276', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=1&_=1505785550850& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:45:50', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7277', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=1&_=1505785573435& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:46:13', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7278', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=1&_=1505785601404& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:46:41', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7279', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=1&_=1505785624230& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:47:04', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7280', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505785838131& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:50:38', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7281', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=6&_=1505785848622& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:50:48', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7282', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505785852070& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:50:52', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7283', '[类名]:com.atk.module.web.cms.PatternController <br/>[方法]:input <br>[参数]:_=1505785906452& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:51:46', ' - ', '模型添加');
+INSERT INTO `t_sys_log` VALUES ('7284', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786280158& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:58:00', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7285', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=6&_=1505786283840& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:58:03', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7286', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786286303& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:58:06', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7287', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786311409& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:58:31', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7288', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786311674& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:58:31', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7289', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786328744& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:58:48', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7290', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786329017& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:58:49', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7291', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786353570& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:59:13', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7292', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786353890& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:59:13', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7293', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786366782& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:59:26', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7294', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786367084& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:59:27', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7295', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786380029& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:59:40', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7296', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786380494& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:59:40', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7297', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786393550& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:59:53', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7298', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786393871& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 09:59:53', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7299', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=24&_=1505786402958& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:02', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7300', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=25&_=1505786404233& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:04', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7301', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=26&_=1505786404984& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:04', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7302', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=27&_=1505786406000& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:06', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7303', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=28&_=1505786406961& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:06', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7304', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=29&_=1505786407663& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:07', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7305', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=24&_=1505786410566& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:10', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7306', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786438306& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:38', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7307', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786456273& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:56', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7308', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786456593& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:00:56', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7309', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786475496& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:01:15', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7310', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786475821& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:01:15', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7311', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786507957& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:01:47', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7312', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786508310& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:01:48', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7313', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=25&_=1505786517667& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:01:57', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7314', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786523482& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:02:03', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7315', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786538284& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:02:18', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7316', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786538638& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:02:18', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7317', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786552985& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:02:32', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7318', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786553366& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:02:33', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7319', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786586948& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:03:06', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7320', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786587352& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:03:07', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7321', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786608130& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:03:28', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7322', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786608491& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:03:28', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7323', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786652320& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:04:12', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7324', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786652705& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:04:12', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7325', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786673156& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:04:33', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7326', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505786673529& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:04:33', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7327', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=60ed989402b146bfb8f5f756e0661948&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:12:31', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7328', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505787174980& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:12:54', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7329', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505787175544& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:12:55', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7330', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=3fbcab5e6aab48dc97a034cec8079e64&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:14:47', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7331', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505787307095& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:15:07', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7332', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505787307659& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:15:07', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7333', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505787329718& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:15:29', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7334', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505787330192& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:15:30', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7335', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505787348136& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:15:48', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7336', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505787348602& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:15:48', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7337', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=1&_=1505788058134& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:27:38', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7338', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=6&_=1505788158909& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:29:18', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7339', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=24&_=1505788198622& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:29:58', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7340', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=24&_=1505788338734& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:32:18', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7341', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=24&_=1505788488204& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:34:48', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7342', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=24&_=1505788582083& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:36:22', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7343', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788816503& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:40:16', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7344', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788819257& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:40:19', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7345', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788855732& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:40:55', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7346', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788856282& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:40:56', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7347', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788877660& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:41:17', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7348', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788878141& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:41:18', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7349', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788907938& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:41:47', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7350', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788908395& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:41:48', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7351', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788925296& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:42:05', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7352', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788925745& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:42:05', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7353', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788953962& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:42:33', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7354', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788954474& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:42:34', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7355', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788978230& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:42:58', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7356', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505788978731& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:42:58', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7357', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505789070098& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:44:30', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7358', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505789070664& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:44:30', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7359', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505789088350& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:44:48', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7360', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505789088882& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:44:48', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7361', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505789106031& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:45:06', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7362', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505789106548& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:45:06', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7363', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505789129833& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:45:29', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7364', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505789130376& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:45:30', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7365', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=7&_=1505789272823& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 10:47:52', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7366', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=d9795a858ea24672bf0092bf3185689b&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 15:25:21', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7367', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=4764683bbf804cfd93ba3687a8b27078&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 15:41:33', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7368', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=5&_=1505806895598& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 15:41:35', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7369', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=11a2df0ec41a42abb817f4f5fb217e64&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 16:01:25', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7370', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=5&_=1505808087230& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 16:01:27', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7371', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=11e395401bcd4fdf8436ed92c16abe34&username=admin&password=123456&verifyCode=ycn6& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 16:09:04', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7372', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=1&_=1505808583299& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 16:09:43', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7373', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=5&_=1505808593368& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 16:09:53', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7374', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=6&_=1505809287331& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 16:21:27', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7375', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=6&_=1505809300430& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 16:21:40', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7376', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=7&_=1505809313783& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-19 16:21:53', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7377', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=f3f36d3106f74a8fadec43b74ab372b4&username=admin&password=123456&verifyCode=y6dd& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-20 11:02:01', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7378', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=7&_=1505876562532& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-20 11:02:42', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7379', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=e61d4b2cde264101b6b5810011f6b212&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-20 11:05:24', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7380', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=5&_=1505876755523& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-20 11:05:55', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7381', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=a81756e7ea9c4217b01b6961f9344981&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-20 16:44:39', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7382', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505897082902& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-20 16:44:42', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7383', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=14d78db68013436d9321e660142718cb&username=admin&password=123456&verifyCode=efwm& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 09:19:53', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7384', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505956799831& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 09:19:59', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7385', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=1&_=1505956817047& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 09:20:17', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7386', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=9d15e2d2a1df4c6ab0c7d7e5ff8a0f43&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:35:07', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7387', '[类名]:com.zhiliao.module.web.cms.ModelController <br/>[方法]:input <br>[参数]:_=1505972219540& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:36:59', ' - ', '模型添加');
+INSERT INTO `t_sys_log` VALUES ('7388', '[类名]:com.zhiliao.module.web.cms.ModelController <br/>[方法]:input <br>[参数]:_=1505972232055& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:37:12', ' - ', '模型添加');
+INSERT INTO `t_sys_log` VALUES ('7389', '[类名]:com.zhiliao.module.web.cms.ModelController <br/>[方法]:input <br>[参数]:_=1505972481001& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:41:21', ' - ', '模型添加');
+INSERT INTO `t_sys_log` VALUES ('7390', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505972749218& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:45:49', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7391', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=1&_=1505972750708& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:45:50', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7392', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505972763987& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:46:03', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7393', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505972826131& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:47:06', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7394', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505972826313& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:47:06', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7395', '[类名]:com.zhiliao.module.web.cms.ContentController <br/>[方法]:input <br>[参数]:categoryId=12&_=1505973043297& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:50:43', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7396', '[类名]:com.zhiliao.module.web.cms.ContentController <br/>[方法]:input <br>[参数]:categoryId=12&_=1505973254511& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:54:14', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7397', '[类名]:com.zhiliao.module.web.cms.ContentController <br/>[方法]:input <br>[参数]:categoryId=12&_=1505973290371& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:54:50', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7398', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505973305303& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:55:05', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7399', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=2&_=1505973306568& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:55:06', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7400', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=1&_=1505973308018& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:55:08', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7401', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=1&_=1505973309050& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:55:09', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7402', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505973311830& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:55:11', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7403', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505973363224& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:56:03', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7404', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1505973363405& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:56:03', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7405', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=13&_=1505973365523& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:56:05', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7406', '[类名]:com.zhiliao.module.web.cms.ContentController <br/>[方法]:input <br>[参数]:categoryId=13&_=1505973379188& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 13:56:19', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7407', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=1&_=1505974476108& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:14:36', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7408', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=5&_=1505974485011& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:14:45', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7409', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=57d0bf2e03b04751a8e2b404be298f2b&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:29:31', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7410', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=5&_=1505975387229& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:29:47', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7411', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=5&_=1505975412801& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:30:12', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7412', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=7&_=1505975563456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:32:43', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7413', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505975567769& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:32:47', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7414', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=7&_=1505975599434& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:33:19', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7415', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=dcfc59f7147c40979dde18b476224819&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:38:21', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7416', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=7&_=1505975920784& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 14:38:40', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7417', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505977213124& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:00:13', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7418', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=8&_=1505977217448& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:00:17', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7419', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=8&_=1505977270268& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:01:10', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7420', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=8&_=1505977271034& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:01:11', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7421', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505977275670& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:01:15', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7422', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=8&_=1505977279726& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:01:19', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7423', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505977306637& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:01:46', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7424', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=8&_=1505977309634& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:01:49', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7425', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=ea433123711c4b9989399079d82eca78&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:03:07', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7426', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505977393830& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:03:13', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7427', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=53&_=1505977397447& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:03:17', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7428', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=54&_=1505977399190& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:03:19', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7429', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505977404443& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:03:24', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7430', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505977405356& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:03:25', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7431', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=55&_=1505977420125& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:03:40', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7432', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505977426369& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:03:46', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7433', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505977427184& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:03:47', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7434', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505977483875& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:04:43', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7435', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:input <br>[参数]:itemId=52&dataId=28&_=1505977498620& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:04:58', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7436', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:input <br>[参数]:itemId=8&_=1505978156679& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:15:56', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7437', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=8&_=1505978193436& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:16:33', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7438', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=53&_=1505978202805& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:16:42', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7439', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=56&_=1505978205613& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:16:45', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7440', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505978215803& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:16:55', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7441', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505978216658& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:16:56', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7442', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505978263488& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:17:43', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7443', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=d1b3427dd8924c359e7c8b085aa18b82&username=admin&password=123456&verifyCode=86m6& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-22 09:16:31', ' - ', '后台用户登陆');
 
 -- ----------------------------
 -- Table structure for t_sys_module
@@ -8036,7 +8476,7 @@ CREATE TABLE `t_sys_user` (
 -- ----------------------------
 -- Records of t_sys_user
 -- ----------------------------
-INSERT INTO `t_sys_user` VALUES ('1', 'admin', '3266bb93948cd26fd302dd2d58a478af381d75879ed9f3dcf309470c50f88fd6', '2017-01-27 21:08:29', '21232f297a57a5a743894a0e4a801fc3', '2017-09-14 16:12:56', null, '0:0:0:0:0:0:0:1', '1', '超级管理', 'http://cdn.chinafirefans.com/8837167b842a47a08beb5e1a26cd9167.png?imageslim');
+INSERT INTO `t_sys_user` VALUES ('1', 'admin', '3266bb93948cd26fd302dd2d58a478af381d75879ed9f3dcf309470c50f88fd6', '2017-01-27 21:08:29', '21232f297a57a5a743894a0e4a801fc3', '2017-09-22 09:16:31', null, '0:0:0:0:0:0:0:1', '1', '超级管理', 'http://cdn.chinafirefans.com/8837167b842a47a08beb5e1a26cd9167.png?imageslim');
 INSERT INTO `t_sys_user` VALUES ('177', 'testdemo1', 'e70877cd600c21f191324085a287f43ca46d7a213987b11341132bb872d4be54', '2017-07-23 17:34:53', 'f131d4091ccd5c25dc0937be1a2ce0e7', '2017-08-25 11:03:22', null, '59.37.29.137', '1', 'testdemo1', '');
 
 -- ----------------------------

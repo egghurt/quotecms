@@ -57,15 +57,14 @@ public class DataController {
     public String page(@RequestParam(value = "pageCurrent",defaultValue = "1") Integer pageNumber,
                        @RequestParam(value = "pageSize",defaultValue = "50") Integer pageSize,
                        TCmsDataVo data,
-                       Model model){
+                       Model model) {
         UserVo userVo = ((UserVo) ControllerUtil.getHttpSession().getAttribute(CmsConst.SITE_USER_SESSION_KEY));
         if(CmsUtil.isNullOrEmpty(userVo))
             throw  new UnauthenticatedException();
         data.setSiteId(userVo.getSiteId());
         data.setUserId(userVo.getUserId());
         TCmsItem item = itemService.findById(data.getItemId());
-        TCmsPattern pattern = patternService.findById(item.getPatternId());
-        String table = pattern.getTableName();
+
         model.addAttribute("model", dataService.page(pageNumber, pageSize, data));
         model.addAttribute("pojo", data);
         model.addAttribute("item", item);
@@ -106,7 +105,11 @@ public class DataController {
             throw new CmsException("当前数据品种不存在或已经被删！");
         TCmsPattern pattern = patternService.findById(item.getPatternId());
         List<TCmsPatternField> cmsPatternFields = patternFieldService.findPatternFieldListByPatternId(pattern.getPatternId());
-        model.addAttribute("items", itemService.selectItemListByUserIdAndParentId(userVo.getUserId(), itemId));
+        List<TCmsItem> items = itemService.selectItemListByUserIdAndParentId(userVo.getUserId(), itemId);
+        for (TCmsItem i: items) {
+            System.out.println(i.getItemName());
+        }
+        model.addAttribute("items", items);
         model.addAttribute("field", cmsPatternFields);
         return "data/data_batch";
     }
@@ -126,6 +129,8 @@ public class DataController {
             if(name.equals("itemId")) {
                 String[] items = request.getParameterValues(name);
                 for(String i:items) {
+
+
                     TCmsItem item = itemService.findById(Long.parseLong(i));
                     TCmsPattern pattern = patternService.findById(item.getPatternId());
                     TCmsData data = new TCmsData();
@@ -136,6 +141,10 @@ public class DataController {
                     data.setName(item.getItemName());
                     data.setItemId(item.getItemId());
                     data.setPatternId(item.getPatternId());
+                    data.setRecent(true);
+
+                    dataService.disableHomeShow(item.getItemId());
+
                     Long dataId = dataService.save(data, pattern.getTableName());
                     map.put(item.getItemId(), dataId);
                     cmsItems.add(item);

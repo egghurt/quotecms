@@ -11,8 +11,14 @@
     <link href="${resPath}/site/css/top.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <!--[if lt IE 9]>
-    <script src="${resPath}/blog/js/modernizr.js"></script>
+    <script src="${resPath}/site/js/modernizr.js"></script>
     <![endif]-->
+
+    <style>
+        .ad-left{ float: left; width: 20%; display: table;}
+        .ad-right{ float: right; width: 20%; }
+        jcarousel-wrapper{ display: inline-block; }
+    </style>
 </head>
 
 <body>
@@ -24,29 +30,29 @@
                     <a href="javascript:;">登录</a>
                     <span class="pipe">|</span>
                     <a href="javascript:;">免费注册</a>
-                    <span class="pipe" style="display: none;">|</span>
-                    <span>咨询电话：021-32580386</span>
+                    <span class="pipe">|</span>
+                    <a href="javascript:;">咨询电话：021-32580386</a>
                 </div>
 
                 <div class="right">
-                    <a href="javascript:;">专卖店使用说明</a>
+                    <a href="member.php?mod=logging&amp;action=login" rel="nofollow" onclick="showWindow('login', this.href);return false;">专卖店使用说明</a>
                     <span class="pipe">|</span>
-                    <a rel="nofollow" href="http://www.metalchina.com">中国金属网</a>
+                    <a rel="nofollow" href="member.php?mod=register">中国金属网</a>
                     <span class="pipe">|</span>
                     <a rel="nofollow" href="member.php?mod=register">关于我们</a>
                     <span class="pipe">|</span>
                     <a rel="nofollow" href="member.php?mod=register">ENGLISH</a>
                     <span class="pipe">|</span>
-                    <a href="javascript:;">产品与服务</a>
+                    <a rel="nofollow" href="http://account.oneplus.cn/login/forget?jump=http%3A%2F%2Fwww.oneplusbbs.com%2F&amp;source=2">产品与服务</a>
                 </div>
             </div>
         </div>
         <div style="height: 90px;">
-            <img src="${resPath}/blog/images/logo.gif">
+            <img src="${resPath}/site/images/logo.gif">
         </div>
         <nav id="topnav">
             <a href="${frontPath}/${site.siteId}/">首页</a>
-            <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="0"   var="bean">
+            <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="0" var="bean">
                 @if(isNotEmpty(category)&&category.categoryId==bean.categoryId){
                 <a id="topnav_current" href="${bean.url!}">${bean.categoryName!}</a>
                 @}else{
@@ -55,97 +61,176 @@
             </#cms_category_list>
         </nav>
     </header>
+    <div style="display: table;">
+        <table>
+            <tr>
+                <td class="cell">
+                    <img src="http://localhost/static/upload/2017/9/13/1505282779479.gif">
+                </td>
+                <td>
+                    <div class="jcarousel-wrapper">
+                        <div class="jcarousel">
+                            <ul>
+                                <#cms_index_slider titleLen="10" size="4" var="slider">
+                                    <li><img src="${slider.img}" onclick="advertise('${slider.sildeUrl}');"> </li>
+                                </#cms_index_slider>
+                            </ul>
+                        </div>
+
+                        <p class="jcarousel-pagination">
+                        </p>
+                    </div>
+                </td>
+                <td class="cell">
+                    <img src="http://localhost/static/upload/2017/9/13/1505282918828.gif">
+                </td>
+            </tr>
+        </table>
+    </div>
     <article>
-        <div class="banner">
-            <ul class="texts">
-                <#cms_index_silder var="slider">
-                    <p>${slider.img!}</p>
-                </#cms_index_silder>
-            </ul>
-        </div>
-        <div class="bloglist">
+        <div class="tab">
             <h2>
-                <p><span>推荐</span>文章</p>
+                <p style="width: 120px;"><span>现货</span> XIAN HUO</p>
             </h2>
-            <#cms_content_list  siteId="${site.siteId}" categoryId="45" target="1" orderBy="2" isHot="0" hasChild="1" size="15"   titleLen="15"   var="content">
-            <div class="blogs">
-                <h3><a href="${content.url!}">${content.title!}</a></h3>
-                @if(isEmpty(content.thumb)){
-                <figure><img src="${resPath}/blog/images/01.jpg" ></figure>
-                @}else{
-                <figure><img src="${content.thumb}" ></figure>
-                @}
-                <ul>
-                    <p>${content.description!}</p>
-                    <a href="${content.url!}" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
-                </ul>
-                <p class="autor"><span>作者：${content.author!}</span>
-
-                    <#cms_category  categoryId="${content.categoryId}" isParent="0" var="bean">
-                    <span>分类：【<a href="${bean.url!}">${bean.categoryName!}</a>】</span>
-                    </#cms_category>
-
-                    <span>浏览（<a href="${content.url!}">${content.viewNum!}</a>）</span>
-                </p>
-                <div class="dateview">${content.inputdate!,dateFormat="yyyy-MM-dd"}</div>
+            <div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>品名</td><td>价格</td><td>均价</td><td>日期</td><td>涨跌</td>
+                        </tr>
+                        <#cms_quote_list  siteId="${site.siteId}" parentId="5"  var="base">
+                            <tr>
+                                <td>${base.name!}</td>
+                                <td>${base.low!} - ${base.high!}</td>
+                                <td>${base.average!}</td>
+                                <td>${base.input_date!, dateFormat="MM-dd"}</td>
+                                <td>0</td>
+                            </tr>
+                        </#cms_quote_list>
+                    </table>
+                    <div class="chart" style="height: 320px;">
+                    </div>
+                </div>
+                <div></div>
             </div>
-            </#cms_content_list>
-
+            <div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>品名</td><td>价格</td><td>均价</td><td>日期</td><td>涨跌</td>
+                        </tr>
+                        <#cms_quote_list  siteId="${site.siteId}" parentId="7"  var="data">
+                            <tr>
+                                <td>${data.name!}</td>
+                                <td>${data.low!} - ${data.high!}</td>
+                                <td>${data.average!}</td>
+                                <td>${data.input_date!, dateFormat="MM-dd"}</td>
+                                <td>0</td>
+                            </tr>
+                        </#cms_quote_list>
+                    </table>
+                    <div class="chart" style="height: 320px;">
+                    </div>
+                </div>
+                <div></div>
+            </div>
         </div>
     </article>
     <aside>
-        <div class="avatar"><a href="${frontPath}/${site.siteId}/"><span>about westBoy</span></a></div>
-        <div class="topspaceinfo">
-            <h1>执子之手，与子偕老</h1>
-            <p>于千万人之中，我遇见了我所遇见的人....</p>
-        </div>
-        <div class="about_c">
-            <p>网名：westBoy</p>
-            <p>职业：无业游民 </p>
-            <p>籍贯：甘肃省-兰州市</p>
-            <p>QQ：154232101</p>
-            <p>邮箱：jin#westboy.net</p>
-        </div>
-        <div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more" data-cmd="more"></a></div>
-        <div class="tj_news">
-            <h2>
-                <p class="tj_t1">最新文章</p>
-            </h2>
-            <ul>
-                <#cms_content_list  siteId="${site.siteId}" categoryId="45" target="1" orderBy="2" isHot="0" hasChild="1" size="15"   titleLen="15"   var="content">
-                   <li><a href="${content.url!}">${content.title!}</a></li>
-                </#cms_content_list>
-            </ul>
-            <h2>
-                <p class="tj_t2">推荐文章</p>
-            </h2>
-            <ul>
-                <#cms_content_list  siteId="${site.siteId}" categoryId="45" target="1" orderBy="2" isHot="1" hasChild="1" isRecommend="1" size="15"   titleLen="15"   var="content">
-                    <li><a href="${content.url!}">${content.title!}</a></li>
-                </#cms_content_list>
-            </ul>
-        </div>
-        <div class="links">
-            <h2>
-                <p>友情链接</p>
-            </h2>
-            <ul>
-              <#cms_friendlink size="5" groupId="1" var="bean">
-                  <li><a target="_blank" href="${bean.linkUrl!}">${bean.linkName!}</a></li>
-              </#cms_friendlink>
-            </ul>
-        </div>
-        <div class="copyright">
-            <ul>
-                <p> Design by DanceSmile</p>
-                <p>陇ICP备14000352号-1</p>
-            </ul>
+        <div class="tab">
+            <h3>
+                <p><span>研究</span> YAN JIU</p>
+            </h3>
         </div>
     </aside>
-
-    <script src="${resPath}/blog/js/silder.js"></script>
     <div class="clear"></div>
     <!-- 清除浮动 -->
+    <div>
+        <div class="tab">
+            <h2>
+                <p style="width: 190px;"><span>企业价格</span> QI YE JIA GE</p>
+            </h2>
+        </div>
+    </div>
+
+    <div>
+        <div class="tab">
+            <h2>
+                <p style="width: 110px;"><span>期货</span> QI HUO</p>
+            </h2>
+        </div>
+    </div>
+
+    <div>
+        <div class="tab">
+            <h2>
+                <p style="width: 104px;"><span>资讯</span> ZI XUN</p>
+            </h2>
+        </div>
+    </div>
+
+    <div>
+        <div class="tab">
+            <h2>
+                <p style="width: 110px;"><span>统计</span> TONG JI</p>
+            </h2>
+        </div>
+    </div>
+    <div>
+        <div class="tab">
+            <h2>
+                <p style="width: 230px;"><span>安泰科会议</span> ANTAIKE HUI YI</p>
+            </h2>
+        </div>
+    </div>
 </div>
+
+<script src="${resPath}/site/js/silder.js"></script>
+<script src="${resPath}/site/js/jquery.js"></script>
+<script src="${resPath}/site/plugins/jquery.jcarousel.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('.jcarousel').jcarousel();
+
+        $('.jcarousel').on('jcarousel:targetin', 'li', function(event, carousel) {
+        });
+
+        $('.jcarousel-control-prev')
+            .on('jcarouselcontrol:active', function() {
+                $(this).removeClass('inactive');
+            })
+            .on('jcarouselcontrol:inactive', function() {
+                $(this).addClass('inactive');
+            })
+            .jcarouselControl({
+                target: '-=1'
+            });
+
+        $('.jcarousel-control-next')
+            .on('jcarouselcontrol:active', function() {
+                $(this).removeClass('inactive');
+            })
+            .on('jcarouselcontrol:inactive', function() {
+                $(this).addClass('inactive');
+            })
+            .jcarouselControl({
+                target: '+=1'
+            });
+
+        $('.jcarousel-pagination')
+            .on('jcarouselpagination:active', 'a', function() {
+                $(this).addClass('active');
+            })
+            .on('jcarouselpagination:inactive', 'a', function() {
+                $(this).removeClass('active');
+            })
+            .jcarouselPagination();
+    });
+    
+    function advertise(url) {
+        console.log(url);
+        window.open(url);
+    }
+</script>
 </body>
 </html>

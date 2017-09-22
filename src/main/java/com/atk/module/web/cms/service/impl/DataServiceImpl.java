@@ -47,6 +47,12 @@ public class DataServiceImpl implements DataService {
         return result;
     }
 
+    @Cacheable(key = "'find-itemIds-'+#p0+'-tableName-'+#p1")
+    @Override
+    public List findDataByItemList(List<Long> itemIds, String tableName) {
+        return dataMapper.selectByItemList(tableName, itemIds);
+    }
+
     @Autowired
     private ItemService itemService;
 
@@ -96,6 +102,19 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
+    public void disableHomeShow(Long itemId) {
+        String update = "update t_cms_data set recent = 0 where item_id = " + itemId;
+        try {
+            Connection conn = dataSource.getConnection();
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(update);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public String update(TCmsData pojo) {
         if(dataMapper.updateByPrimaryKeySelective(pojo) > 0)
             return JsonUtil.toSUCCESS("操作成功");
@@ -129,6 +148,12 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
+    public PageInfo<TCmsData> findDataListByPatternFiledValue(int pageNumber, Long itemId, String tableName, Map<String, Object> param) {
+        PageHelper.startPage(pageNumber, itemService.findPageSize(itemId));
+        return new PageInfo<>(dataMapper.selectByTableNameAndMap(tableName,itemId,param));
+    }
+
+    @Override
     public PageInfo<TCmsData> page(Integer pageNumber, Integer pageSize, TCmsDataVo pojo) {
         Long itemId = pojo.getItemId();
         TCmsItem item = itemService.findById(itemId);
@@ -137,12 +162,18 @@ public class DataServiceImpl implements DataService {
         if(item.getHasChild()) {
             List<TCmsItem> items = recursion(itemId, pojo.getSiteId());
             for(TCmsItem i:items) {
-                pojo.setItemId(i.getItemId());
-                data.addAll(dataMapper.selectByCondition(pojo));
+                TCmsDataVo dataVo = (TCmsDataVo)pojo.clone();
+                dataVo.setItemId(i.getItemId());
+                data.addAll(dataMapper.selectByCondition(dataVo));
             }
             return new PageInfo(data);
         }
         return new PageInfo(dataMapper.selectByCondition(pojo));
+    }
+
+    @Override
+    public List<TCmsItem> getLeafChildren(Integer siteId, Long parentId) {
+        return recursion(parentId, siteId);
     }
 
     public List<TCmsItem> recursion(Long itemId, Integer siteId) {

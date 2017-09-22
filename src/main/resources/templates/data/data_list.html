@@ -33,7 +33,7 @@
             <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
             <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">刷新全部</a>
             &nbsp;
-            @if(item.parentId == 0){
+            @if(item.parentId == 0 || item.hasChild){
             <a href="${ctxPath}/system/cms/data/batch?itemId=${pojo.itemId!}" class="btn btn-green"  data-toggle="dialog"   data-width="650" data-height="600" data-id="post-data" data-icon="plus"  data-title="批量报价">批量报价</a>
             @} else if(!item.hasChild) {
             <a href="${ctxPath}/system/cms/data/input?itemId=${pojo.itemId!}" class="btn btn-green" data-icon="plus" data-toggle="ajaxload" data-target="#layout-data" >发布内容</a>

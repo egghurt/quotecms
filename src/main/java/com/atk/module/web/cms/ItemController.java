@@ -58,6 +58,9 @@ public class ItemController {
     @RequestMapping("/save")
     @ResponseBody
     public String save(TCmsItem pojo) throws SQLException {
+        if(pojo.getHasChild() == null) {
+            pojo.setHasChild(false);
+        }
         UserVo userVo = UserUtil.getSysUserVo();
         pojo.setSiteId(userVo.getSiteId());
         if(pojo.getItemId()!=null)

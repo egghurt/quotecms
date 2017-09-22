@@ -15,6 +15,7 @@
         <result column="input_date" jdbcType="TIMESTAMP" property="inputDate" />
         <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
         <result column="check_date" jdbcType="TIMESTAMP" property="checkDate" />
+        <result column="recent" jdbcType="INTEGER" property="recent" />
         <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
     </resultMap>
 
@@ -38,6 +39,41 @@
         d.data_id = m.data_id
         WHERE
         d.data_id =#{dataId}
+    </select>
+
+    <select id="selectByItemList"  resultType="java.util.Map">
+        SELECT
+        d.data_id quoteId,
+        d.item_id itemId,
+        d.name,
+        d.input_date,
+        m.*
+        FROM
+        t_cms_data d  LEFT JOIN  t_cms_data_${tableName}  m
+        ON
+        d.data_id = m.data_id
+        WHERE
+        d.recent = 1 AND
+        d.item_id in
+        <foreach item="item" index="index" collection="itemIds"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectByTableNameAndMap"   resultMap="BaseResultMap">
+        SELECT
+        *
+        FROM
+        t_cms_data c  LEFT JOIN  t_cms_data_${tableName}  m
+        ON
+        c.data_id = m.data_id
+        <trim prefix="WHERE ("  suffix=")" prefixOverrides="AND|OR">
+            item_id = #{caId}
+            <foreach item="value" index="key" collection="param.entrySet()" >
+                and  ${key} = ${value}
+            </foreach>
+        </trim>
     </select>
 
     <select id="selectByCondition" parameterType="com.atk.mybatis.model.TCmsData" resultMap="BaseResultMap">

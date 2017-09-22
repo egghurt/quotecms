@@ -119,6 +119,17 @@ public class TagRegisterFactory {
         return  springBeanTagFactory;
     }
 
+    /**
+     * 金属报价标签
+     * @return
+     */
+    @Bean(name = "quoteListTagFactory")
+    public SpringBeanTagFactory baseListTagFactory() {
+        SpringBeanTagFactory springBeanTagFactory = new SpringBeanTagFactory();
+        springBeanTagFactory.setName("quoteListTag");
+        return springBeanTagFactory;
+    }
+
 
     /* 友情链接标签 */
     @Bean(name = "friendLinkListTagFactory")
@@ -143,8 +154,10 @@ public class TagRegisterFactory {
                                       @Qualifier("indexSliderTagFactory") SpringBeanTagFactory indexSliderTagFactory,
                                       @Qualifier("topicListTagFactory") SpringBeanTagFactory topicListTagFactory,
                                       @Qualifier("topicContentTagFactory") SpringBeanTagFactory topicContentTagFactory,
-                                      @Qualifier("friendLinkListTagFactory") SpringBeanTagFactory friendLinkListTagFactory
+                                      @Qualifier("friendLinkListTagFactory") SpringBeanTagFactory friendLinkListTagFactory,
 
+
+                                      @Qualifier("quoteListTagFactory") SpringBeanTagFactory quoteListTagFactory
 
     ){
         Map<String,TagFactory> tag = Maps.newHashMap();
@@ -162,6 +175,8 @@ public class TagRegisterFactory {
         tag.put("cms_topic_list",topicListTagFactory);
         tag.put("cms_topic_content",topicContentTagFactory);
         tag.put("cms_friendlink",friendLinkListTagFactory);
+
+        tag.put("cms_quote_list", quoteListTagFactory);
         return  tag;
     }
 

@@ -5,180 +5,304 @@
     <title>${site.siteName!}</title>
     <meta name="keywords" content="${site.keyword!}" />
     <meta name="description" content="${site.description!}" />
-    <link href="${resPath}/site/css/base.css" rel="stylesheet">
-    <link href="${resPath}/site/css/index.css" rel="stylesheet">
-    <link href="${resPath}/site/css/media.css" rel="stylesheet">
-    <link href="${resPath}/site/css/top.css" rel="stylesheet">
+    <link href="${resPath}/site/css/bulma.css" rel="stylesheet">
+    <link href="${resPath}/site/css/style.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <!--[if lt IE 9]>
     <script src="${resPath}/site/js/modernizr.js"></script>
     <![endif]-->
-
-    <style>
-        .ad-left{ float: left; width: 20%; display: table;}
-        .ad-right{ float: right; width: 20%; }
-        .jcarousel-wrapper{ display: inline-block; }
-    </style>
 </head>
 
 <body>
-<div class="ibody">
-    <header>
-        <div class="top-nav">
-            <div class="wp">
-                <div class="left">
-                    <a href="javascript:;">登录</a>
-                    <span class="pipe">|</span>
-                    <a href="javascript:;">免费注册</a>
-                    <span class="pipe">|</span>
-                    <a href="javascript:;">咨询电话：021-32580386</a>
-                </div>
+<section class="hero is-small">
+    <!-- Hero header: will stick at the top -->
+    <div class="hero-head">
+        <header class="nav">
+            <div class="container">
+                <div class="nav-left">
+                    <a class="nav-item">登录</a>
 
-                <div class="right">
-                    <a href="member.php?mod=logging&amp;action=login" rel="nofollow" onclick="showWindow('login', this.href);return false;">专卖店使用说明</a>
-                    <span class="pipe">|</span>
-                    <a rel="nofollow" href="member.php?mod=register">中国金属网</a>
-                    <span class="pipe">|</span>
-                    <a rel="nofollow" href="member.php?mod=register">关于我们</a>
-                    <span class="pipe">|</span>
-                    <a rel="nofollow" href="member.php?mod=register">ENGLISH</a>
-                    <span class="pipe">|</span>
-                    <a rel="nofollow" href="http://account.oneplus.cn/login/forget?jump=http%3A%2F%2Fwww.oneplusbbs.com%2F&amp;source=2">产品与服务</a>
+                    <a class="nav-item">免费注册</a>
+
+                    <a class="nav-item">咨询电话：021-32580386</a>
+                </div>
+                <span class="nav-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <div class="nav-right nav-menu">
+                    <a class="nav-item">
+                        专卖店使用说明
+                    </a>
+                    <a class="nav-item">
+                        中国金属网
+                    </a>
+                    <a class="nav-item">
+                        关于我们
+                    </a>
+                    <a class="nav-item">
+                        ENGLISH
+                    </a>
+                    <a class="nav-item">
+                        产品与服务
+                    </a>
                 </div>
             </div>
+        </header>
+    </div>
+
+    <!-- Hero content: will be in the middle -->
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <article class="media">
+                <figure class="media-left bd-structure-item">
+                    <p class="image">
+                        <img src="${resPath}/site/images/logo.png">
+                    </p>
+                </figure>
+                <div class="media-content bd-structure-item bd-is-structure-right">
+                    <div class="content">
+
+                    </div>
+                </div>
+            </article>
         </div>
-        <div style="height: 90px;">
-            <img src="${resPath}/site/images/logo.gif">
-        </div>
-        <nav id="topnav">
-            <a href="${frontPath}/${site.siteId}/">首页</a>
-            <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="0" var="bean">
-                @if(isNotEmpty(category)&&category.categoryId==bean.categoryId){
-                <a id="topnav_current" href="${bean.url!}">${bean.categoryName!}</a>
-                @}else{
-                <a href="${bean.url!}">${bean.categoryName!}</a>
-                @}
-            </#cms_category_list>
+    </div>
+
+    <!-- Hero footer: will stick at the bottom -->
+    <div class="hero-foot is-primary">
+        <nav class="tabs">
+            <div class="container">
+                <nav class="level">
+                    <p class="level-item has-text-centered">
+                        <a class="link is-info">首页</a>
+                    </p>
+                    <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="0" var="bean">
+                    <p class="level-item has-text-centered">
+                        <a class="link is-info" href="${bean.url!}">${bean.categoryName!}</a>
+                    </p>
+                    </#cms_category_list>
+                </nav>
+            </div>
         </nav>
-    </header>
-    <div style="display: table;">
-        <table>
-            <tr>
-                <td class="cell">
-                    <img src="http://localhost/static/upload/2017/9/13/1505282779479.gif">
-                </td>
-                <td>
-                    <div class="jcarousel-wrapper">
-                        <div class="jcarousel">
-                            <ul>
-                                <#cms_index_slider titleLen="10" size="4" var="slider">
-                                    <li><img src="${slider.img}" onclick="advertise('${slider.sildeUrl}');"> </li>
-                                </#cms_index_slider>
-                            </ul>
+    </div>
+</section>
+
+<section class="container" style="margin: 20px auto;">
+    <div id="notice-search">
+        <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+                <p>跑马灯</p>
+            </div>
+            <!-- Right side -->
+            <div class="level-right">
+                <div class="field has-addons">
+                    <p class="control">
+                    <span class="select">
+                      <select>
+                        <option>标题</option>
+                        <option>内容</option>
+                      </select>
+                    </span>
+                    </p>
+                    <p class="control">
+                        <input class="input" type="text" placeholder="关键字">
+                    </p>
+                    <p class="control">
+                        <a class="button">
+                            检索
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </nav>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-one-quarter">
+                <img src="http://localhost/static/upload/2017/9/13/1505282779479.gif">
+            </div>
+            <div class="column">
+                <div class="jcarousel-wrapper">
+                    <div class="jcarousel">
+                        <ul>
+                            <#cms_index_slider titleLen="10" size="4" var="slider">
+                                <li><img src="${slider.img}" onclick="advertise('${slider.sildeUrl}');"> </li>
+                            </#cms_index_slider>
+                        </ul>
+                    </div>
+
+                    <p class="jcarousel-pagination">
+                    </p>
+                </div>
+            </div>
+            <div class="column is-one-quarter">
+                <img src="http://localhost/static/upload/2017/9/13/1505282918828.gif">
+            </div>
+        </div>
+
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-8">
+                <div class="tile">
+                    <div class="tile is-parent is-7">
+                        <article class="tile is-child box">
+                            <div class="tabs is-small is-centered">
+                                <ul>
+                                    <li><a href="#tab-2">升贴水</a></li>
+                                    <li><a href="#tab-3">周均价</a></li>
+                                    <li><a href="#tab-4">月均价</a></li>
+                                </ul>
+                            </div>
+                            <div id="tab-1">
+                                <table class="table is-striped is-narrow is-fullwidth">
+                                    <thead>
+                                    <tr>
+                                        <th>品名</th><th>价格</th><th>均价</th><th>日期</th><th>涨跌</th>
+                                    </tr>
+                                    </thead>
+                                    <#cms_quote_list  siteId="${site.siteId}" parentId="5"  var="base">
+                                        <tr>
+                                            <td>${base.name!}</td>
+                                            <td>${base.low!} - ${base.high!}</td>
+                                            <td>${base.average!}</td>
+                                            <td>${base.input_date!, dateFormat="MM-dd"}</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </#cms_quote_list>
+                                </table>
+                            </div>
+                            <div id="tab-2">2</div>
+                            <div id="tab-3">3</div>
+                            <div id="tab-4">4</div>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">基本金属走势图</p>
+                            <p class="subtitle">With an image</p>
+                            <figure class="image is-4by3">
+                                <img src="http://bulma.io/images/placeholders/640x480.png">
+                            </figure>
+                        </article>
+                    </div>
+                </div>
+                <div class="tile">
+                    <div class="tile is-parent is-7">
+                        <article class="tile is-child box">
+                            <table class="table is-striped is-narrow is-fullwidth">
+                                <thead>
+                                <tr>
+                                    <th>品名</th><th>价格</th><th>均价</th><th>日期</th><th>涨跌</th>
+                                </tr>
+                                </thead>
+                                <#cms_quote_list  siteId="${site.siteId}" parentId="7"  var="data">
+                                    <tr>
+                                        <td>${data.name!}</td>
+                                        <td>${data.low!} - ${data.high!}</td>
+                                        <td>${data.average!}</td>
+                                        <td>${data.input_date!, dateFormat="MM-dd"}</td>
+                                        <td>0</td>
+                                    </tr>
+                                </#cms_quote_list>
+                            </table>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child box">
+                            <p class="title">氧化铝走势图</p>
+                            <p class="subtitle">With an image</p>
+                            <figure class="image is-4by3">
+                                <img src="http://bulma.io/images/placeholders/640x480.png">
+                            </figure>
+                        </article>
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">Wide column</p>
+                        <p class="subtitle">Aligned with the right column</p>
+                        <div class="content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
                         </div>
+                    </article>
+                </div>
+            </div>
+            <div class="tile is-ancestor is-vertical">
 
-                        <p class="jcarousel-pagination">
-                        </p>
-                    </div>
-                </td>
-                <td class="cell">
-                    <img src="http://localhost/static/upload/2017/9/13/1505282918828.gif">
-                </td>
-            </tr>
-        </table>
-    </div>
-    <article>
-        <div class="tab">
-            <h2>
-                <p style="width: 120px;"><span>现货</span> XIAN HUO</p>
-            </h2>
-            <div>
-                <div>
-                    <table>
-                        <tr>
-                            <td>品名</td><td>价格</td><td>均价</td><td>日期</td><td>涨跌</td>
-                        </tr>
-                        <tr>
-                            <td>品名</td><td>价格</td><td>均价</td><td>日期</td><td>涨跌</td>
-                        </tr>
-                        <tr>
-                            <td>品名</td><td>价格</td><td>均价</td><td>日期</td><td>涨跌</td>
-                        </tr>
-                        <tr>
-                            <td>品名</td><td>价格</td><td>均价</td><td>日期</td><td>涨跌</td>
-                        </tr>
-                    </table>
-                    <div class="chart" style="height: 320px;">
+                <div class="tile is-parent">
+                    <div class="tile is-parent is-vertical">
+                        <div class="columns">
+                            <div class="column" style="background: #4a4a4a; margin: 10px 10px 0 10px;">
+                                First column
+                            </div>
+                            <div class="column" style="background: #4a4a4a; margin: 10px 10px 0 0;;">
+
+                            </div>
+                        </div>
+                        <article class="tile is-child box">
+                            <p class="title">首席热点专栏</p>
+                            <p class="subtitle">Top box</p>
+                        </article>
+                        <article class="tile is-child box">
+                            <p class="title">安泰科研究</p>
+                            <p class="subtitle">Bottom box</p>
+                        </article>
+                        <article class="tile is-child box">
+                            <p class="title">Vertical tiles</p>
+                            <p class="subtitle">Bottom box</p>
+                        </article>
+                        <article class="tile is-child box">
+                            <p class="title">Vertical tiles</p>
+                            <p class="subtitle">Bottom box</p>
+                        </article>
                     </div>
                 </div>
-                <div></div>
             </div>
-            <div>
-                <div>
-                    <table>
-                        <tr>
-                            <td>品名</td><td>价格</td><td>均价</td><td>日期</td><td>涨跌</td>
-                        </tr>
-                    </table>
-                    <div class="chart" style="height: 320px;">
+        </div>
+
+        <div class="tile is-ancestor">
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <p class="title">Side column</p>
+                    <p class="subtitle">With some content</p>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
                     </div>
-                </div>
-                <div></div>
+                </article>
+            </div>
+            <div class="tile is-parent is-8">
+                <article class="tile is-child box">
+                    <p class="title">Main column</p>
+                    <p class="subtitle">With some content</p>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+                    </div>
+                </article>
             </div>
         </div>
-    </article>
-    <aside>
-        <div class="tab">
-            <h3>
-                <p><span>研究</span> YAN JIU</p>
-            </h3>
-        </div>
-    </aside>
-    <div class="clear"></div>
-    <!-- 清除浮动 -->
-    <div>
-        <div class="tab">
-            <h2>
-                <p style="width: 190px;"><span>企业价格</span> QI YE JIA GE</p>
-            </h2>
-        </div>
     </div>
+</section>
 
-    <div>
-        <div class="tab">
-            <h2>
-                <p style="width: 110px;"><span>期货</span> QI HUO</p>
-            </h2>
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            关于我们 | 公司简介 | 联系我们 | 版权声明 | 法律声明 | 专卖店使用说明
+        </div>
+        <div class="content has-text-centered">
+            本网站所载信息及数据仅供参考 据此操作 风险自负 All Rights Reserved 版权所有 沪ICP备11047922-1
         </div>
     </div>
+</footer>
 
-    <div>
-        <div class="tab">
-            <h2>
-                <p style="width: 104px;"><span>资讯</span> ZI XUN</p>
-            </h2>
-        </div>
-    </div>
-
-    <div>
-        <div class="tab">
-            <h2>
-                <p style="width: 110px;"><span>统计</span> TONG JI</p>
-            </h2>
-        </div>
-    </div>
-    <div>
-        <div class="tab">
-            <h2>
-                <p style="width: 230px;"><span>安泰科会议</span> ANTAIKE HUI YI</p>
-            </h2>
-        </div>
-    </div>
-</div>
-
-<script src="${resPath}/site/js/silder.js"></script>
 <script src="${resPath}/site/js/jquery.js"></script>
 <script src="${resPath}/site/plugins/jquery.jcarousel.js"></script>
+<script src="${resPath}/site/plugins/jquery.tabslet.js"></script>
 <script type="text/javascript">
     $(function() {
         $('.jcarousel').jcarousel();
@@ -216,10 +340,15 @@
                 $(this).removeClass('active');
             })
             .jcarouselPagination();
+
+        $('.tabs').tabslet({
+            mouseevent: 'hover',
+            attribute: 'href',
+            animation: false
+        });
     });
     
     function advertise(url) {
-        console.log(url);
         window.open(url);
     }
 </script>

@@ -67,6 +67,11 @@ public class TCmsData implements Serializable {
     private Date checkDate;
 
     /**
+     * 首页显示
+     */
+    private Boolean recent;
+
+    /**
      * 说明
      */
     private String remark;
@@ -149,6 +154,14 @@ public class TCmsData implements Serializable {
 
     public void setCheckDate(Date checkDate) {
         this.checkDate = checkDate;
+    }
+
+    public Boolean getRecent() {
+        return recent;
+    }
+
+    public void setRecent(Boolean recent) {
+        this.recent = recent;
     }
 
     public String getRemark() {
