@@ -342,6 +342,16 @@ public class ContentServiceImpl implements ContentService{
         return new PageInfo<>(contentMapper.selectByTopicContentListBySiteIdAndCategoryIds(siteId,categoryIds,orderBy,isHot,isPic,isRecommend));
     }
 
+    @Cacheable(key = "'find-siteid-'+#p0+'-modelid-'+#p1+'-orderby-'+#p2+'-pageNumber-'+#p3+'-pageSize-'+#p4+'-hasChild-'+#p5+'-isHot-'+#p6+'-isPic-'+#p7+'-isRecommend-'+#p8")
+    @Override
+    public PageInfo<Map> findContentListBySiteIdAndModelId(Integer siteId, Integer modelId, Integer orderBy, Integer pageNumber, Integer pageSize, Integer isHot, Integer isPic, Integer isRecommend) {
+        TCmsModel model = modelService.findById(modelId);
+        if(CmsUtil.isNullOrEmpty(model)) throw new CmsException("栏目["+modelId+"]不存在！");
+
+        PageHelper.startPage(pageNumber, pageSize);
+        return new PageInfo<>(contentMapper.selectByContentListBySiteIdAndModelId(siteId, modelId, orderBy, isHot, isPic, isRecommend, model.getTableName()));
+    }
+
     @Cacheable(key = "'page-pageNumber-'+#p0+'-siteId-'+#p1+'-categoryId-'+#p2")
     @Override
     public PageInfo<Map> page(Integer pageNumber,Integer siteId, Long categoryId) {

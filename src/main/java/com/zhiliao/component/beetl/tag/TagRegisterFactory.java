@@ -27,6 +27,14 @@ public class TagRegisterFactory {
         return  springBeanTagFactory;
     }
 
+    /* 模型内容列表标签 */
+    @Bean(name = "modelContentListTagFactory")
+    public SpringBeanTagFactory ModelContentListTagFactory(){
+        SpringBeanTagFactory springBeanTagFactory = new SpringBeanTagFactory();
+        springBeanTagFactory.setName("modelContentListTag");
+        return  springBeanTagFactory;
+    }
+
     /* 内容分页标签 */
     @Bean(name = "contentPageTagFactory")
     public SpringBeanTagFactory ContentPageTagFactory(){
@@ -157,7 +165,8 @@ public class TagRegisterFactory {
                                       @Qualifier("friendLinkListTagFactory") SpringBeanTagFactory friendLinkListTagFactory,
 
 
-                                      @Qualifier("quoteListTagFactory") SpringBeanTagFactory quoteListTagFactory
+                                      @Qualifier("quoteListTagFactory") SpringBeanTagFactory quoteListTagFactory,
+                                      @Qualifier("modelContentListTagFactory") SpringBeanTagFactory modelContentListTagFactory
 
     ){
         Map<String,TagFactory> tag = Maps.newHashMap();
@@ -177,6 +186,7 @@ public class TagRegisterFactory {
         tag.put("cms_friendlink",friendLinkListTagFactory);
 
         tag.put("cms_quote_list", quoteListTagFactory);
+        tag.put("cms_model_content", modelContentListTagFactory);
         return  tag;
     }
 

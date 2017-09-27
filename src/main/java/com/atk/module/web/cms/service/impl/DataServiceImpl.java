@@ -180,7 +180,7 @@ public class DataServiceImpl implements DataService {
         List<TCmsItem> children = new ArrayList<TCmsItem>();
         for(TCmsItem item:itemService.findItemListByPid(itemId, siteId)) {
             if(item.getHasChild()) {
-                children = recursion(item.getItemId(), siteId);
+                children.addAll(recursion(item.getItemId(), siteId));
             }
             else {
                 children.add(item);

@@ -29,6 +29,15 @@ public interface TCmsContentMapper extends Mapper<TCmsContent> {
                                                         @Param("tableName") String tableName
     );
 
+    List<Map> selectByContentListBySiteIdAndModelId(@Param("siteId") Integer siteId,
+                                                        @Param("modelId") Integer modelId,
+                                                        @Param("orderBy") Integer orderBy,
+                                                        @Param("isHot") Integer isHot,
+                                                        @Param("isPic") Integer isPic,
+                                                        @Param("isRecommend") Integer isRecommend,
+                                                        @Param("tableName") String tableName
+    );
+
     List<Map> selectByTopicContentListBySiteIdAndCategoryIds(@Param("siteId") Integer siteId,
                                                              @Param("categoryIds") Long[] categoryIds,
                                                              @Param("orderBy") Integer orderBy,

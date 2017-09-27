@@ -8,10 +8,31 @@
     <link href="${resPath}/site/css/bulma.css" rel="stylesheet">
     <link href="${resPath}/site/css/style.css" rel="stylesheet">
 
+    <link href="${resPath}/site/css/unslider.css" rel="stylesheet">
+    <link href="${resPath}/site/css/unslider-dots.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
     <!--[if lt IE 9]>
     <script src="${resPath}/site/js/modernizr.js"></script>
     <![endif]-->
+
+    <style>
+        #tab_container .container_item {
+            display: none;
+        }
+
+        #tab_container .container_item.is-active {
+            display: block;
+        }
+
+        table {
+            font-size: 12px;
+        }
+
+        body {
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
@@ -80,9 +101,9 @@
                         <a class="link is-info">首页</a>
                     </p>
                     <#cms_category_list  siteId="${site.siteId}" categoryId="0" isNav="0" var="bean">
-                    <p class="level-item has-text-centered">
-                        <a class="link is-info" href="${bean.url!}">${bean.categoryName!}</a>
-                    </p>
+                        <p class="level-item has-text-centered">
+                            <a class="link is-info" href="${bean.url!}">${bean.categoryName!}</a>
+                        </p>
                     </#cms_category_list>
                 </nav>
             </div>
@@ -129,18 +150,14 @@
                 <img src="http://localhost/static/upload/2017/9/13/1505282779479.gif">
             </div>
             <div class="column">
-                <div class="jcarousel-wrapper">
-                    <div class="jcarousel">
-                        <ul>
-                            <#cms_index_slider titleLen="10" size="4" var="slider">
-                                <li><img src="${slider.img}" onclick="advertise('${slider.sildeUrl}');"> </li>
-                            </#cms_index_slider>
-                        </ul>
-                    </div>
-
-                    <p class="jcarousel-pagination">
-                    </p>
+                <div class="default-slider">
+                    <ul>
+                    <#cms_index_slider titleLen="10" size="4" var="slider">
+                        <li><img src="${slider.img}" onclick="advertise('${slider.sildeUrl}');"></li>
+                    </#cms_index_slider>
+                    </ul>
                 </div>
+
             </div>
             <div class="column is-one-quarter">
                 <img src="http://localhost/static/upload/2017/9/13/1505282918828.gif">
@@ -152,34 +169,61 @@
                 <div class="tile">
                     <div class="tile is-parent is-7">
                         <article class="tile is-child box">
-                            <div class="tabs is-small is-centered">
+                            <div class="tabs is-centered" id="tab_header">
                                 <ul>
-                                    <li><a href="#tab-2">升贴水</a></li>
-                                    <li><a href="#tab-3">周均价</a></li>
-                                    <li><a href="#tab-4">月均价</a></li>
+                                    <li class="item is-active" data-option="base-item"><a>基本金属</a></li>
+                                    <li class="item" data-option="pd-item"><a>升贴水</a></li>
+                                    <li class="item" data-option="week-item"><a>周均价</a></li>
+                                    <li class="item" data-option="month-item"><a>月均价</a></li>
                                 </ul>
+                                <li class="item"><a>历史数据查询</a></li>
                             </div>
-                            <div id="tab-1">
-                                <table class="table is-striped is-narrow is-fullwidth">
-                                    <thead>
-                                    <tr>
-                                        <th>品名</th><th>价格</th><th>均价</th><th>日期</th><th>涨跌</th>
-                                    </tr>
-                                    </thead>
-                                    <#cms_quote_list  siteId="${site.siteId}" parentId="5"  var="base">
+                            <div class="box" id="tab_container">
+                                <div class="container_item is-active" data-item="base-item">
+                                    <table class="table is-striped is-narrow is-fullwidth">
+                                        <thead>
                                         <tr>
-                                            <td>${base.name!}</td>
-                                            <td>${base.low!} - ${base.high!}</td>
-                                            <td>${base.average!}</td>
-                                            <td>${base.input_date!, dateFormat="MM-dd"}</td>
-                                            <td>0</td>
+                                            <th>品名</th><th>价格</th><th>均价</th><th>日期</th><th>涨跌</th>
                                         </tr>
-                                    </#cms_quote_list>
-                                </table>
+                                        </thead>
+                                        <#cms_quote_list  siteId="${site.siteId}" parentId="5"  var="base">
+                                            <tr>
+                                                <td>${base.name!}</td>
+                                                <td>${base.low!} - ${base.high!}</td>
+                                                <td>${base.average!}</td>
+                                                <td>${base.input_date!, dateFormat="MM-dd"}</td>
+                                                <td>0</td>
+                                            </tr>
+                                        </#cms_quote_list>
+                                    </table>
+                                </div>
+                                <div class="container_item" data-item="pd-item">
+                                    <table class="table is-striped is-narrow is-fullwidth">
+                                        <thead>
+                                        <tr>
+                                            <th>品名</th><th>升贴水</th><th>日期</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <#cms_quote_list  siteId="${site.siteId}" parentId="6"  var="data">
+                                            <tr>
+                                                <td>${data.name!}</td>
+                                                <td>${data.premium_discount!}</td>
+                                                <td>${data.input_date!, dateFormat="MM-dd"}</td>
+                                            </tr>
+                                        </#cms_quote_list>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="container_item" data-item="week-item">
+                                    <table class="table is-striped is-narrow is-fullwidth">
+                                    </table>
+                                </div>
+                                <div class="container_item" data-item="month-item">
+                                    <table class="table is-striped is-narrow is-fullwidth">
+                                    </table>
+                                </div>
                             </div>
-                            <div id="tab-2">2</div>
-                            <div id="tab-3">3</div>
-                            <div id="tab-4">4</div>
                         </article>
                     </div>
                     <div class="tile is-parent">
@@ -195,22 +239,51 @@
                 <div class="tile">
                     <div class="tile is-parent is-7">
                         <article class="tile is-child box">
-                            <table class="table is-striped is-narrow is-fullwidth">
-                                <thead>
-                                <tr>
-                                    <th>品名</th><th>价格</th><th>均价</th><th>日期</th><th>涨跌</th>
-                                </tr>
-                                </thead>
-                                <#cms_quote_list  siteId="${site.siteId}" parentId="7"  var="data">
-                                    <tr>
-                                        <td>${data.name!}</td>
-                                        <td>${data.low!} - ${data.high!}</td>
-                                        <td>${data.average!}</td>
-                                        <td>${data.input_date!, dateFormat="MM-dd"}</td>
-                                        <td>0</td>
-                                    </tr>
-                                </#cms_quote_list>
-                            </table>
+                            <div class="tabs is-centered" id="oxygen_tab_header">
+                                <ul>
+                                    <li class="item is-active" data-option="1"><a>氧化铝</a></li>
+                                    <li class="item" data-option="2"><a>金属指数</a></li>
+                                    <li class="item" data-option="3"><a>周均价</a></li>
+                                    <li class="item" data-option="4"><a>月均价</a></li>
+                                </ul>
+                                <li class="item"><a>历史数据查询</a></li>
+                            </div>
+                            <div class="box" id="oxygen_tab_container">
+                                <div class="container_item is-active" data-item="1">
+                                    <table class="table is-striped is-narrow is-fullwidth">
+                                        <thead>
+                                        <tr>
+                                            <th>品名</th><th>价格</th><th>均价</th><th>日期</th><th>涨跌</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <#cms_quote_list  siteId="${site.siteId}" parentId="7"  var="data">
+                                            <tr>
+                                                <td>${data.name!}</td>
+                                                <td>${data.low!} - ${data.high!}</td>
+                                                <td>${data.average!}</td>
+                                                <td>${data.input_date!, dateFormat="MM-dd"}</td>
+                                                <td>0</td>
+                                            </tr>
+                                        </#cms_quote_list>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="container_item" data-item="2">
+                                    <table class="table is-striped is-narrow is-fullwidth">
+
+                                    </table>
+                                </div>
+                                <div class="container_item" data-item="3">
+                                    <table class="table is-striped is-narrow is-fullwidth">
+                                    </table>
+                                </div>
+                                <div class="container_item" data-item="4">
+                                    <table class="table is-striped is-narrow is-fullwidth">
+                                    </table>
+                                </div>
+                            </div>
+
                         </article>
                     </div>
                     <div class="tile is-parent">
@@ -225,7 +298,7 @@
                 </div>
                 <div class="tile is-parent">
                     <article class="tile is-child box">
-                        <p class="title">Wide column</p>
+                        <p class="title">安泰科小金属</p>
                         <p class="subtitle">Aligned with the right column</p>
                         <div class="content">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
@@ -245,10 +318,24 @@
 
                             </div>
                         </div>
-                        <article class="tile is-child box">
-                            <p class="title">首席热点专栏</p>
-                            <p class="subtitle">Top box</p>
-                        </article>
+                        <div class="tile is-child content">
+                            <h2>首席热点专栏</h2>
+                            <#cms_model_content  siteId="${site.siteId}" modelId="81" target="1" orderBy="2" isHot="1" isRecommend="0"  size="9"   titleLen="15"   var="content">
+                            <article class="media">
+                                <figure class="media-left">
+                                    <p class="image is-128x128">
+                                        <img src="${content.thumb!}">
+                                    </p>
+                                </figure>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <h3><strong>${content.title!}</strong></h3>
+                                        <p>${content.description!}</p>
+                                    </div>
+                                </div>
+                            </article>
+                            </#cms_model_content>
+                        </div>
                         <article class="tile is-child box">
                             <p class="title">安泰科研究</p>
                             <p class="subtitle">Bottom box</p>
@@ -269,21 +356,193 @@
         <div class="tile is-ancestor">
             <div class="tile is-parent">
                 <article class="tile is-child box">
-                    <p class="title">Side column</p>
+                    <p class="title">会员报价</p>
                     <p class="subtitle">With some content</p>
                     <div class="content">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
                     </div>
                 </article>
             </div>
-            <div class="tile is-parent is-8">
+            <div class="tile is-parent is-6">
                 <article class="tile is-child box">
-                    <p class="title">Main column</p>
+                    <p class="title">专卖店入口</p>
                     <p class="subtitle">With some content</p>
                     <div class="content">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
                     </div>
                 </article>
+            </div>
+        </div>
+
+        <div class="tile is-ancestor">
+            <div class="tile is-parent">
+                <article class="tile is-child box">
+                    <p class="title">行情</p>
+                    <p class="subtitle">With some content</p>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+                    </div>
+                </article>
+            </div>
+            <div class="tile is-parent is-4">
+                <article class="tile is-child box">
+                    <p class="title">沪伦比值图</p>
+                    <p class="subtitle">With some content</p>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+                    </div>
+                </article>
+            </div>
+            <div class="tile is-parent is-5">
+                <article class="tile is-child box">
+                    <p class="title">期权</p>
+                    <p class="subtitle">With some content</p>
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-3">
+                <div class="content">
+                    <h2>行业信息</h2>
+                    <ul>
+                        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
+                        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>
+                        <li>Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.</li>
+                        <li>Ut non enim metus.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column is-3">
+                <div class="content">
+                    <h2>大宗焦点</h2>
+                    <ul>
+                        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
+                        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>
+                        <li>Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.</li>
+                        <li>Ut non enim metus.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column is-3">
+                <div class="content">
+                    <h2>经济</h2>
+                    <ul>
+                        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
+                        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>
+                        <li>Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.</li>
+                        <li>Ut non enim metus.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column is-3">
+                <div class="content">
+                    <h2>金融</h2>
+                    <ul>
+                        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
+                        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>
+                        <li>Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.</li>
+                        <li>Ut non enim metus.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="column is-4">
+                <div class="content">
+                    <h2>库存</h2>
+                    <ul>
+                        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
+                        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>
+                        <li>Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.</li>
+                        <li>Ut non enim metus.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column is-4">
+                <div class="content">
+                    <h2>加工费</h2>
+                    <ul>
+                        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
+                        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>
+                        <li>Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.</li>
+                        <li>Ut non enim metus.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column is-4">
+                <div class="content">
+                    <h2>海关</h2>
+                    <ul>
+                        <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
+                        <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>
+                        <li>Aliquam nec felis in sapien venenatis viverra fermentum nec lectus.</li>
+                        <li>Ut non enim metus.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns" style="margin-bottom: 10px;">
+            <div class="column is-10">
+                <article class="media">
+                    <figure class="media-left">
+                        <p class="image is-256x256">
+                            <img src="http://bulma.io/images/placeholders/256x256.png">
+                        </p>
+                    </figure>
+                    <div class="media-content">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <p class="title">近期会议</p>
+                                    <p class="subtitle">Subtitle</p>
+                                    <div class="content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut.</p>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="tile is-parent">
+                                <article class="tile is-child box">
+                                    <p class="title">会议资讯</p>
+                                    <p class="subtitle">Subtitle</p>
+                                    <div class="content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut.</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="column is-2">
+                <div class="field is-horizontal">
+                    <div>
+                        <label class="label" style="width: 50px;">姓名：</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">会议名称：</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">联系电话：</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Text input">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -300,54 +559,16 @@
     </div>
 </footer>
 
-<script src="${resPath}/site/js/jquery.js"></script>
-<script src="${resPath}/site/plugins/jquery.jcarousel.js"></script>
-<script src="${resPath}/site/plugins/jquery.tabslet.js"></script>
+<!--<script src="${resPath}/site/js/jquery.js"></script>-->
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+
+<script src="${resPath}/site/plugins/unslider-min.js"></script>
+<script src="${resPath}/site/js/main.js"></script>
+
 <script type="text/javascript">
-    $(function() {
-        $('.jcarousel').jcarousel();
-
-        $('.jcarousel').on('jcarousel:targetin', 'li', function(event, carousel) {
-        });
-
-        $('.jcarousel-control-prev')
-            .on('jcarouselcontrol:active', function() {
-                $(this).removeClass('inactive');
-            })
-            .on('jcarouselcontrol:inactive', function() {
-                $(this).addClass('inactive');
-            })
-            .jcarouselControl({
-                target: '-=1'
-            });
-
-        $('.jcarousel-control-next')
-            .on('jcarouselcontrol:active', function() {
-                $(this).removeClass('inactive');
-            })
-            .on('jcarouselcontrol:inactive', function() {
-                $(this).addClass('inactive');
-            })
-            .jcarouselControl({
-                target: '+=1'
-            });
-
-        $('.jcarousel-pagination')
-            .on('jcarouselpagination:active', 'a', function() {
-                $(this).addClass('active');
-            })
-            .on('jcarouselpagination:inactive', 'a', function() {
-                $(this).removeClass('active');
-            })
-            .jcarouselPagination();
-
-        $('.tabs').tabslet({
-            mouseevent: 'hover',
-            attribute: 'href',
-            animation: false
-        });
-    });
-    
     function advertise(url) {
         window.open(url);
     }
