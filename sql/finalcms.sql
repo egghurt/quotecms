@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100121
 File Encoding         : 65001
 
-Date: 2017-09-22 14:12:07
+Date: 2017-09-29 16:54:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -168,27 +168,30 @@ CREATE TABLE `t_cms_category` (
   `page_size` int(11) DEFAULT NULL COMMENT '栏目分页数量',
   `allow_search` tinyint(1) unsigned DEFAULT '0' COMMENT '当前栏目下的是否支持全文搜索',
   `category_icon` varchar(255) DEFAULT NULL COMMENT '栏目图标',
+  `permission_key` varchar(100) DEFAULT NULL COMMENT '栏目权限标识',
+  `sort_id` int(11) DEFAULT '0',
   PRIMARY KEY (`category_id`),
   KEY `category_id` (`category_id`),
   KEY `short_name` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='分类表';
 
 -- ----------------------------
 -- Records of t_cms_category
 -- ----------------------------
-INSERT INTO `t_cms_category` VALUES ('1', 'tong', '铜', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', '1', '0', null, '50', '1', '');
-INSERT INTO `t_cms_category` VALUES ('2', 'lv', '铝', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '');
-INSERT INTO `t_cms_category` VALUES ('3', 'qian', '铅', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '');
-INSERT INTO `t_cms_category` VALUES ('4', 'xin', '锌', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '');
-INSERT INTO `t_cms_category` VALUES ('5', 'xi', '锡', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '');
-INSERT INTO `t_cms_category` VALUES ('6', 'nie', '镍', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '');
-INSERT INTO `t_cms_category` VALUES ('7', 'jinyin', '金银', '1', '0', '79', '0', '			    \r\n			    \r\n			    ', 'category', 'category_list', 'content', '1', 'http://www.chinapmetals.org.cn/', null, '0', null, '50', '0', '');
-INSERT INTO `t_cms_category` VALUES ('8', 'yinbizhe', '铟铋锗', '1', '0', '79', '0', '			    \r\n			    ', 'category', 'category_list', 'content', '1', 'http://www.chinainbige.org/', null, '0', null, '50', '0', '');
-INSERT INTO `t_cms_category` VALUES ('9', 'gu', '钴', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', 'http://www.chinacobalt.org/', null, '0', null, '50', '0', '');
-INSERT INTO `t_cms_category` VALUES ('10', 'ti', '锑', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', 'http://www.antimonychina.org/', null, '0', null, '50', '0', '');
-INSERT INTO `t_cms_category` VALUES ('11', 'gui', '硅', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', 'http://www.siliconchina.org/', null, '0', null, '50', '0', '');
-INSERT INTO `t_cms_category` VALUES ('12', 'chief column', '首席专栏', '1', '1', '81', '0', '			    ', 'category', 'category_list', 'content', '0', '', null, '0', null, '20', '1', '');
-INSERT INTO `t_cms_category` VALUES ('13', 'Antaike Research', '安泰科研究', '1', '1', '82', '0', '			    ', 'category', 'category_list', 'content', '0', '', null, '0', null, '20', '1', '');
+INSERT INTO `t_cms_category` VALUES ('1', 'tong', '铜', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', '1', '0', null, '50', '1', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('2', 'lv', '铝', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', '1', '0', null, '50', '1', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('3', 'qian', '铅', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('4', 'xin', '锌', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('5', 'xi', '锡', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('6', 'nie', '镍', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', '', null, '0', null, '50', '1', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('7', 'jinyin', '金银', '1', '0', '79', '0', '			    \r\n			    \r\n			    ', 'category', 'category_list', 'content', '1', 'http://www.chinapmetals.org.cn/', null, '0', null, '50', '0', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('8', 'yinbizhe', '铟铋锗', '1', '0', '79', '0', '			    \r\n			    ', 'category', 'category_list', 'content', '1', 'http://www.chinainbige.org/', null, '0', null, '50', '0', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('9', 'gu', '钴', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', 'http://www.chinacobalt.org/', null, '0', null, '50', '0', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('10', 'ti', '锑', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', 'http://www.antimonychina.org/', null, '0', null, '50', '0', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('11', 'gui', '硅', '1', '0', '79', '0', '			    ', 'category', 'category_list', 'content', '1', 'http://www.siliconchina.org/', null, '0', null, '50', '0', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('12', 'chief column', '首席专栏', '1', '1', '81', '0', '			    ', 'category', 'category_list', 'content', '0', '', null, '0', null, '20', '1', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('13', 'Antaike Research', '安泰科研究', '1', '1', '82', '0', '			    ', 'category', 'category_list', 'content', '0', '', null, '0', null, '20', '1', '', null, null);
+INSERT INTO `t_cms_category` VALUES ('14', 'chief column', '首席专栏', '1', '2', '81', '0', '			    ', 'category', 'category_list', 'content', '0', '', null, '0', null, '50', '1', '', null, null);
 
 -- ----------------------------
 -- Table structure for t_cms_content
@@ -214,14 +217,16 @@ CREATE TABLE `t_cms_content` (
   `view_num` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '查看次数',
   PRIMARY KEY (`content_id`),
   KEY `catid` (`category_id`,`model_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='内容表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='内容表';
 
 -- ----------------------------
 -- Records of t_cms_content
 -- ----------------------------
 INSERT INTO `t_cms_content` VALUES ('1', '1', '1', '1', '79', '赞比亚今年铜产量预计小幅下滑', '铜，产量，下滑', '赞比亚今年铜产量预计小幅下滑至753,992吨，低于2016年的774,290吨，主要因Konkola铜矿产量减少', '1', '1', '', '1', '2017-09-14 16:12:34', '2017-09-14 16:12:34', '', 'admin', '12');
 INSERT INTO `t_cms_content` VALUES ('2', '1', '1', '1', '79', '再生铜产业或将迎来较好发展机遇', '再生铜', '以“创新模式绿色发展”为主题的全国再生铜产业链创新发展高峰论坛近日在江西鹰潭举行。来自全国铜产业链企业360余人参与讨论、交流与对话，与会领导、嘉宾做了精彩主题发言。', '0', '0', '', '1', '2017-09-14 16:20:13', '2017-09-14 16:20:13', '', 'admin', '8');
-INSERT INTO `t_cms_content` VALUES ('3', '1', '1', '1', '79', '利空接踵而至 沪铜创出“七连阴”', '沪铜, 跌', '继9月5日创下近四年半高位后，沪铜便展开连续调整，昨日主力1711合约盘中更是创下50370元/吨的阶段新低，并创出“七连阴”。分析人士表示，美元暴涨以及库存增加等因素，进一步增添了沪铜期价调整压力。短期来看，价格急跌之后期价或有反弹需求，但从中线来看，本轮涨势已结束，或将进入较长时间的震荡调整期。', '1', '1', '', '1', '2017-09-18 13:18:08', '2017-09-18 13:18:08', '', 'admin', '15');
+INSERT INTO `t_cms_content` VALUES ('3', '1', '1', '1', '79', '利空接踵而至 沪铜创出“七连阴”', '沪铜, 跌', '继9月5日创下近四年半高位后，沪铜便展开连续调整，昨日主力1711合约盘中更是创下50370元/吨的阶段新低，并创出“七连阴”。分析人士表示，美元暴涨以及库存增加等因素，进一步增添了沪铜期价调整压力。短期来看，价格急跌之后期价或有反弹需求，但从中线来看，本轮涨势已结束，或将进入较长时间的震荡调整期。', '1', '1', '', '1', '2017-09-18 13:18:08', '2017-09-18 13:18:08', '', 'admin', '22');
+INSERT INTO `t_cms_content` VALUES ('4', '1', '1', '14', '81', '铝市春秋', '供需, 价格', '按照市场的供需逻辑，高库存应当对应低价格，低库存应当对应高价格。但这一市场规律在铝市却出现了扭曲：2016年8月，铝市创下历史极低库存——24.1万吨之后，对应铝价才12000元/吨左右;如今铝库存高达160万吨，价格却一度逼近17000元/吨。', '1', '1', 'http://localhost/static/upload/2017/9/26/1506408090513.jpg', '1', '2017-09-26 14:42:51', '2017-09-26 14:42:51', '', 'admin', '8');
+INSERT INTO `t_cms_content` VALUES ('5', '1', '1', '12', '81', '铜市日评', '铜，产量，下滑', '今日沪铜主力1711合约开于49840元/吨，收盘于50260元/吨，上涨410元/吨，涨幅0.82%。成交量减少10.4万手至24.7万手，持仓量减少8606手至17.9万手。', '1', '1', 'http://localhost/static/upload/2017/9/26/1506409876431.jpg', '1', '2017-09-26 15:12:02', '2017-09-26 15:12:02', '', 'admin', '2');
 
 -- ----------------------------
 -- Table structure for t_cms_content_articles
@@ -243,13 +248,15 @@ CREATE TABLE `t_cms_content_articles` (
 DROP TABLE IF EXISTS `t_cms_content_chief`;
 CREATE TABLE `t_cms_content_chief` (
   `content_id` bigint(20) NOT NULL DEFAULT '0',
-  `column_content` text,
+  `content` text,
   PRIMARY KEY (`content_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_cms_content_chief
 -- ----------------------------
+INSERT INTO `t_cms_content_chief` VALUES ('4', '<p>按照市场的供需逻辑，高库存应当对应低价格，低库存应当对应高价格。但这一市场规律在铝市却出现了扭曲：2016年8月，铝市创下历史极低库存——24.1万吨之后，对应铝价才12000元/吨左右;如今铝库存高达160万吨，价格却一度逼近17000元/吨。</p><p>分析人士表示，单纯通过库存一个数据来判断价格是片面的。因为与2016年8月份相比较，市场有很多因素发生了变化。揭开迷雾看本质，在库存高达160万吨的情况下，电解铝的生产利润仍高达1500-2000元，这才是铝市最大矛盾。</p><p>高库存与高价格并行</p><p>“去年8月份历史极低库存20万吨左右时，铝价才12000元/吨上下;如今160万吨的超高库存时，铝价却一度逼近17000元/吨。与当初的市场判断相比，简直是开了一个天大的玩笑!”一位业内人士发文感慨。</p><p>2015年铝价延续此前跌势，沪铝主力连续合约一度跌至9620元/吨，创上市以来的历史低点。国内电解铝市场掀起去产能“运动”，国内近30家电解铝厂减产的总产量达到417万吨。这就直接带来了2016年电解铝市场非常明显的去库存。</p><p>据SMM统计，2016年国内五地电解铝库存在3月中旬出现年内高点92.8万吨，但随后库存快速下降，2016年8月初达到记录以来的历史低点24.1万吨，随后一段时间出现小幅回升。价格方面，去年8月初沪铝价格在11765元/吨-12310元/吨之间震荡。</p><p>今年8月，我国电解铝产量264万吨，同比减少3.7%。月度产量连续2个月下降。1-8月累计产量2217万吨，同比增加6.1%，按此进度预计今年电解铝产量3400万吨左右，较去年增加220万吨。随着环保和减产限产措施的实施，目前国内冶炼企业总开工率逐渐下滑，但业内预计电解铝总产量仍将继续创历史新高。价格方面，今年8月份，沪铝在14545元-16755元/吨之间震荡，昨日更是最高上探至16935元/吨。</p><p>对于这种库存与价格的背离，东证衍生品研究院有色分析师孙伟东指出，两个阶段的宏观环境差异较大，去年8月份宏观利空因素偏多，而现阶段宏观利多因素偏多。去年8月由于铝水直供比例增加，铝锭库存走低对价格支撑偏弱，市场担忧的还是在于潜在的供给增量，以及需求回升的可持续性。现阶段铝锭库存虽然大幅回升，但在去产能及环保政策持续推进的预期下，市场对未来铝供需由剩转缺的信心逐渐增强，高库存不可持续，采暖季库存将趋于下降等预期掩盖了库存高企的现状，成为推动价格上涨动因。</p><p>“铝库存受运输条件影响变动较大，去年8月的低库存主要是运输新政影响，以及铁路车皮紧张所致，新疆地区库存难以流入到内陆，随着节假日消费停滞，运力充沛，库存开始逐渐回升。铝价自2015年年底开始上涨，随着铝价攀升，企业利润增加，冶炼企业复产和增产情况突出。同时，9月是供给侧改革各项政策落地最后期限，部分企业停产前增加了产出，短期铝供应量增加，导致库存上升。”中银国际期货分析师刘超指出。</p><p>故事很丰满 现实很骨感</p><p>“单纯通过库存一个数据来判断价格是片面的，因为与2016年8月份相比较，市场有很多因素发生了变化。例如，电解铝的成本主要是电和氧化铝，今年8月份动力煤价格达到640元以上，而去年此时价格不足500元，价格上涨了28%;今年8月份氧化铝的价格在2600元左右，而去年此时氧化铝的价格只有1715元/吨，价格上涨了51%，另外阳级和氟化铝的价格也分别上涨了50%和40%左右，因此只从成本一项上看，电解铝的价格就上涨了38%，可见电解铝价格从12000元/吨上涨到17000元/吨，价格上涨41%是与成本上涨密切相关的。”研究院首席有色分析师车红云表示。</p><p>刘超分析称，国内铝社会库存近几年的主要波动在{60，120}万吨区间，在2013年3月铝社会库存到达过151万吨，2011年8月铝社会库存跌到过36万吨的低位。但高、低位持续时间都不长，持续3-5个月后，库存就会重回到正常区间范围。“近几年我国铝消费保持快速增长势头，从库存消费比的角度看，目前的铝库存消费比是低于2013年库存高位时库存消费比。所以从库存的总规模来看，目前的库存总量并不大。”</p><p>车红云指出，揭开迷雾看本质，在库存高达160万吨的情况下，电解铝的生产利润仍高达1500-2000元，这才是铝市最大的矛盾。而产生这个矛盾的最大原因在于供给侧改革。</p><p>铝与钢铁、水泥统称为三大用电大户。2016年，铝冶炼行业的用电量就占了全国的7%。且供应长期过剩，铝材料出口不仅加剧了国内能源的紧张，形成环保问题，同时国内大量出口也引发了国际贸易纷争。2013年中国就发文规定在2013年5月开始不再审批新的产能。</p><p>2017年4月12日，国家发改委、工信部、国土资源部、环保部四部委联合发布《清理整顿电解铝行业违法违规项目专项行动工作方案的通知》，并规定清理整顿专项行动要在6个月内完成，分为企业自查、地方核查、专项抽查、督促整改4个阶段，分别要求在5月15日前、6月30日前、9月15日前、10月15日前完成。此通知一出便得到业内的积极响应。</p><p>4月16日新疆昌吉州宣布停止境内3家违规在建电解铝项目建设，分别是东方希望未批已建的80万吨，其亚未批在建80万吨，嘉润二期45万吨和天龙10万吨。此后各地纷纷公布关停违规产能，其中最引人关注的是7月24日山东发改委责令魏桥、信发集团关停电解铝321万吨产能，这使铝的供给侧改革达到高峰，也是铝价上破15000元冲高到17000元的主要动力。从统计局公布的产量数据来看，7、8月份中国铝产量开始大幅放缓，同比下降0.3%和7.3%，与前6个月同比增长8.8%的趋势发生根本转变。据业内专家评论，今年关停违规产能会在460万吨。</p><p>遇谣言而涨 遇事实而跌</p><p>供给侧改革是铝行业今年的一大“故事亮点”，但库存如此增加，是否与政策层面发生背离了呢?</p><p>孙伟东指出，供给侧改革的效果已经达到，上游利润得到修复，低端的高污染产能基本被淘汰。从电解铝产量来看，7月份产量已经开始由升转降，8月开工率也出现较大幅度下降。但政策执行力度有一定区域性差异，京津冀及周边严厉一些，西南等地区相对松一些。</p><p>车红云指出，从最新各地供暖季限产政策来看，环保限产30%的部分和违规产能关停将不会重叠，环保限产限制的是合法产能，照此计算，供暖季电解铝产能将缩减354万吨，最大影响产量在88万吨以内，实际影响可能会在70万吨左右。考虑到今年上半年过剩量就在110万吨，7、8月份仍然过剩，铝的库存足以保证铝的供应，市场上更多的反应会在铝库存的改变上。</p><p>“铝价上涨已经体现了供给端改革的影响，对于供暖季的影响，市场也体现了大部分，考虑到供暖季过后因此原因关停的企业会复产，尤其是考虑到最终国内的产能仍能满足国内需求，近期铝价的上涨空间将会有限。行业有句至理名言：遇谣言而涨，遇事实而跌。在供暖季来临之时，铝价也将盛极而衰。”车红云分析称。</p><p>孙伟东表示，现阶段市场对去产能及环保政策产生的实际效果有一定分歧，且四季度还有一部分合规的新增产能要投放，需求端也存在旺季不旺的风险。接下来国内铝锭库存的变化对市场预期影响较大，如果采暖季库存显著下降，铝价将重拾升势，主力期价或突破17500元/吨。反之，铝价则有明显的下行风险。</p><p><br></p>');
+INSERT INTO `t_cms_content_chief` VALUES ('5', '<p>今日沪铜主力1711合约开于49840元/吨，收盘于50260元/吨，上涨410元/吨，涨幅0.82%。成交量减少10.4万手至24.7万手，持仓量减少8606手至17.9万手。今日经济数据相对清淡，市场主要受政治局势相关的因素主导，美元指数震荡上行，基本金属走势分化，沪铜窄幅震荡为主，预计下一交易日沪铜主力主要波动区间在49500-50800元/吨。</p><p>今日安泰科电解铜现货报价50410-50470元/吨，均价50440元/吨，较上一交易日上涨710元/吨;主流品牌对当月合约升贴水报价，(120，160)元。华东地区上午升水铜主流成交对当月合约升水150-升水160，平水铜升水120-升水140。持货商挺价出货，日内采购商节前积极增加备货，市场实际成交尚可。</p><p>(以上分析，仅供参考，据此入市，风险自负)</p><p><br></p>');
 
 -- ----------------------------
 -- Table structure for t_cms_content_news
@@ -257,7 +264,7 @@ CREATE TABLE `t_cms_content_chief` (
 DROP TABLE IF EXISTS `t_cms_content_news`;
 CREATE TABLE `t_cms_content_news` (
   `content_id` bigint(20) NOT NULL DEFAULT '0',
-  `news_content` mediumtext NOT NULL,
+  `content` mediumtext NOT NULL,
   PRIMARY KEY (`content_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -300,7 +307,7 @@ CREATE TABLE `t_cms_data` (
   `remark` varchar(255) DEFAULT '' COMMENT '说明',
   PRIMARY KEY (`data_id`),
   KEY `catid` (`item_id`,`pattern_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='数据表';
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='数据表';
 
 -- ----------------------------
 -- Records of t_cms_data
@@ -333,6 +340,9 @@ INSERT INTO `t_cms_data` VALUES ('25', '1', '1', '49', '1', '当月长单价', '
 INSERT INTO `t_cms_data` VALUES ('26', '1', '1', '50', '1', '澳洲现货氧化铝均价', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:09', '2017-09-21 14:40:08', '1', null);
 INSERT INTO `t_cms_data` VALUES ('27', '1', '1', '51', '1', '内蒙地区', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:10', '2017-09-21 14:40:09', '1', null);
 INSERT INTO `t_cms_data` VALUES ('28', '1', '1', '52', '1', '贵州地区', '0', '2017-09-21 14:40:07', '2017-09-21 14:40:10', '2017-09-21 14:40:09', '1', null);
+INSERT INTO `t_cms_data` VALUES ('29', '1', '1', '30', '5', '好铜', '0', '2017-09-25 16:19:18', '2017-09-25 16:19:19', '2017-09-25 16:19:19', '1', null);
+INSERT INTO `t_cms_data` VALUES ('30', '1', '1', '31', '5', '平水铜', '0', '2017-09-25 16:19:18', '2017-09-25 16:19:19', '2017-09-25 16:19:19', '1', null);
+INSERT INTO `t_cms_data` VALUES ('31', '1', '1', '32', '5', '湿法铜', '0', '2017-09-25 16:19:19', '2017-09-25 16:19:19', '2017-09-25 16:19:19', '1', null);
 
 -- ----------------------------
 -- Table structure for t_cms_data_fee
@@ -360,6 +370,9 @@ CREATE TABLE `t_cms_data_premium_discount` (
 -- ----------------------------
 -- Records of t_cms_data_premium_discount
 -- ----------------------------
+INSERT INTO `t_cms_data_premium_discount` VALUES ('29', '100');
+INSERT INTO `t_cms_data_premium_discount` VALUES ('30', '200');
+INSERT INTO `t_cms_data_premium_discount` VALUES ('31', '300');
 
 -- ----------------------------
 -- Table structure for t_cms_data_quote
@@ -370,40 +383,41 @@ CREATE TABLE `t_cms_data_quote` (
   `low` int(11) DEFAULT '0',
   `high` int(11) DEFAULT '0',
   `average` int(11) DEFAULT '0',
+  `change` int(11) DEFAULT NULL,
   PRIMARY KEY (`data_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_cms_data_quote
 -- ----------------------------
-INSERT INTO `t_cms_data_quote` VALUES ('1', '50780', '50830', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('2', '20500', '20550', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('3', '25980', '26080', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('4', '3460', '3500', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('5', '3450', '3500', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('6', '50720', '50770', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('7', '20750', '20850', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('8', '25930', '26030', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('9', '50270', '50320', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('10', '21300', '21400', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('11', '25920', '26020', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('12', '25860', '25920', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('13', '88700', '89400', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('14', '142500', '144000', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('15', '16590', '16650', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('16', '16620', '16700', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('17', '16460', '16520', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('18', '16590', '16650', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('19', '3500', '3550', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('20', '3500', '3540', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('21', '3500', '3540', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('22', '3350', '3400', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('23', '3485', '3485', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('24', '3300', '3350', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('25', '2794', '2794', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('26', '389', '389', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('27', '3500', '3550', '0');
-INSERT INTO `t_cms_data_quote` VALUES ('28', '3360', '3420', '0');
+INSERT INTO `t_cms_data_quote` VALUES ('1', '50780', '50830', '50805', null);
+INSERT INTO `t_cms_data_quote` VALUES ('2', '20500', '20550', '20525', null);
+INSERT INTO `t_cms_data_quote` VALUES ('3', '25980', '26080', '26030', null);
+INSERT INTO `t_cms_data_quote` VALUES ('4', '3460', '3500', '3480', null);
+INSERT INTO `t_cms_data_quote` VALUES ('5', '3450', '3500', '3475', null);
+INSERT INTO `t_cms_data_quote` VALUES ('6', '50720', '50770', '50745', null);
+INSERT INTO `t_cms_data_quote` VALUES ('7', '20750', '20850', '20800', null);
+INSERT INTO `t_cms_data_quote` VALUES ('8', '25930', '26030', '25980', null);
+INSERT INTO `t_cms_data_quote` VALUES ('9', '50270', '50320', '50295', null);
+INSERT INTO `t_cms_data_quote` VALUES ('10', '21300', '21400', '21350', null);
+INSERT INTO `t_cms_data_quote` VALUES ('11', '25920', '26020', '25970', null);
+INSERT INTO `t_cms_data_quote` VALUES ('12', '25860', '25920', '25890', null);
+INSERT INTO `t_cms_data_quote` VALUES ('13', '88700', '89400', '89050', null);
+INSERT INTO `t_cms_data_quote` VALUES ('14', '142500', '144000', '143250', null);
+INSERT INTO `t_cms_data_quote` VALUES ('15', '16590', '16650', '16620', null);
+INSERT INTO `t_cms_data_quote` VALUES ('16', '16620', '16700', '16660', null);
+INSERT INTO `t_cms_data_quote` VALUES ('17', '16460', '16520', '16490', null);
+INSERT INTO `t_cms_data_quote` VALUES ('18', '16590', '16650', '16620', null);
+INSERT INTO `t_cms_data_quote` VALUES ('19', '3500', '3550', '3525', null);
+INSERT INTO `t_cms_data_quote` VALUES ('20', '3500', '3540', '3520', null);
+INSERT INTO `t_cms_data_quote` VALUES ('21', '3500', '3540', '3520', null);
+INSERT INTO `t_cms_data_quote` VALUES ('22', '3350', '3400', '3375', null);
+INSERT INTO `t_cms_data_quote` VALUES ('23', '3485', '3485', '3485', null);
+INSERT INTO `t_cms_data_quote` VALUES ('24', '3300', '3350', '3325', null);
+INSERT INTO `t_cms_data_quote` VALUES ('25', '2794', '2794', '2794', null);
+INSERT INTO `t_cms_data_quote` VALUES ('26', '389', '389', '389', null);
+INSERT INTO `t_cms_data_quote` VALUES ('27', '3500', '3550', '3525', null);
+INSERT INTO `t_cms_data_quote` VALUES ('28', '3360', '3420', '3390', null);
 
 -- ----------------------------
 -- Table structure for t_cms_data_ratio
@@ -501,7 +515,7 @@ INSERT INTO `t_cms_item` VALUES ('2', 'jiagongfei', '加工费', '1', '0', '2', 
 INSERT INTO `t_cms_item` VALUES ('3', 'hulunbizhi', '沪伦比值', '1', '0', '3', '0', 'category_list', '0', '0', null);
 INSERT INTO `t_cms_item` VALUES ('4', 'kucun', '库存', '1', '0', '4', '0', 'category_list', '1', '0', null);
 INSERT INTO `t_cms_item` VALUES ('5', 'jibenjinshu', '基本金属', '1', '1', '1', '0', 'category_list', '1', '0', null);
-INSERT INTO `t_cms_item` VALUES ('6', 'jibenjinshushengtieshui', '基本金属升贴水', '1', '1', '1', '0', 'category_list', '1', '0', null);
+INSERT INTO `t_cms_item` VALUES ('6', 'jibenjinshushengtieshui', '基本金属升贴水', '1', '1', '5', '0', 'category_list', '1', '0', null);
 INSERT INTO `t_cms_item` VALUES ('7', 'yanghualv', '氧化铝', '1', '1', '1', '0', 'category_list', '1', '0', null);
 INSERT INTO `t_cms_item` VALUES ('8', 'xiaojinshu', '小金属', '1', '1', '1', '0', 'category_list', '1', '0', null);
 INSERT INTO `t_cms_item` VALUES ('9', 'tongjingkuang', '铜精矿', '1', '2', '2', '0', 'category_list', '0', '0', null);
@@ -645,9 +659,9 @@ CREATE TABLE `t_cms_model_filed` (
 -- ----------------------------
 -- Records of t_cms_model_filed
 -- ----------------------------
-INSERT INTO `t_cms_model_filed` VALUES ('133', '80', 'article_content', 'editor', '', 'mediumText', '文章内容', '1', '0', '0', '');
-INSERT INTO `t_cms_model_filed` VALUES ('134', '79', 'news_content', 'editor', '', 'mediumText', '新闻内容', '1', '0', '0', '');
-INSERT INTO `t_cms_model_filed` VALUES ('135', '81', 'column_content', 'editor', '', 'mediumText', '文章内容', '0', '0', '0', '');
+INSERT INTO `t_cms_model_filed` VALUES ('133', '80', 'content', 'editor', '', 'mediumText', '文章内容', '1', '0', '0', '');
+INSERT INTO `t_cms_model_filed` VALUES ('134', '79', 'content', 'editor', '', 'mediumText', '新闻内容', '1', '0', '0', '');
+INSERT INTO `t_cms_model_filed` VALUES ('135', '81', 'content', 'editor', '', 'mediumText', '文章内容', '0', '0', '0', '');
 
 -- ----------------------------
 -- Table structure for t_cms_pattern
@@ -697,6 +711,7 @@ CREATE TABLE `t_cms_pattern_field` (
 INSERT INTO `t_cms_pattern_field` VALUES ('1', '1', 'low', 'input', '0', 'int', '最低价', '0', '11', '0', '');
 INSERT INTO `t_cms_pattern_field` VALUES ('3', '1', 'high', 'input', '0', 'int', '最高价', '0', '11', '0', '');
 INSERT INTO `t_cms_pattern_field` VALUES ('4', '1', 'average', 'input', '0', 'int', '均价', '0', '11', '0', '');
+INSERT INTO `t_cms_pattern_field` VALUES ('5', '1', 'change', 'input', '0', 'int', '涨跌', '0', '11', '0', '');
 INSERT INTO `t_cms_pattern_field` VALUES ('6', '5', 'premium_discount', 'input', '0', 'int', '升贴水', '1', '11', '0', '');
 
 -- ----------------------------
@@ -895,7 +910,7 @@ CREATE TABLE `t_sys_attachment` (
   `file_size` float(10,2) unsigned NOT NULL DEFAULT '0.00' COMMENT '文件大小',
   `url` varchar(255) DEFAULT NULL COMMENT '附件网址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_sys_attachment
@@ -906,6 +921,8 @@ INSERT INTO `t_sys_attachment` VALUES ('48', '1505282918828.gif', '1', 'admin', 
 INSERT INTO `t_sys_attachment` VALUES ('49', '1505289440063.jpg', '1', 'admin', '2017-09-13 15:57:20', '0:0:0:0:0:0:0:1', 'image/jpeg', 'D:\\Users\\CicadasCMS\\WEB-INF\\classes\\static\\upload\\2017\\9\\13\\1505289440063.jpg', '76.69', 'http://localhost/static/upload/2017/9/13/1505289440063.jpg');
 INSERT INTO `t_sys_attachment` VALUES ('50', '1505289556977.jpg', '1', 'admin', '2017-09-13 15:59:16', '0:0:0:0:0:0:0:1', 'image/jpeg', 'D:\\Users\\CicadasCMS\\WEB-INF\\classes\\static\\upload\\2017\\9\\13\\1505289556977.jpg', '94.73', 'http://localhost/static/upload/2017/9/13/1505289556977.jpg');
 INSERT INTO `t_sys_attachment` VALUES ('51', '1505361711840.jpg', '1', 'admin', '2017-09-14 12:01:51', '0:0:0:0:0:0:0:1', 'image/jpeg', 'D:\\Users\\CicadasCMS\\WEB-INF\\classes\\static\\upload\\2017\\9\\14\\1505361711840.jpg', '34.74', 'http://localhost/static/upload/2017/9/14/1505361711840.jpg');
+INSERT INTO `t_sys_attachment` VALUES ('52', '1506408090513.jpg', '1', 'admin', '2017-09-26 14:41:30', '0:0:0:0:0:0:0:1', 'image/jpeg', 'D:\\Users\\QuoteCms\\WEB-INF\\classes\\static\\upload\\2017\\9\\26\\1506408090513.jpg', '40.90', 'http://localhost/static/upload/2017/9/26/1506408090513.jpg');
+INSERT INTO `t_sys_attachment` VALUES ('53', '1506409876431.jpg', '1', 'admin', '2017-09-26 15:11:16', '0:0:0:0:0:0:0:1', 'image/jpeg', 'D:\\Users\\QuoteCms\\WEB-INF\\classes\\static\\upload\\2017\\9\\26\\1506409876431.jpg', '58.19', 'http://localhost/static/upload/2017/9/26/1506409876431.jpg');
 
 -- ----------------------------
 -- Table structure for t_sys_log
@@ -918,7 +935,7 @@ CREATE TABLE `t_sys_log` (
   `username` varchar(255) DEFAULT '',
   `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7444 DEFAULT CHARSET=utf8 COMMENT='日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=7468 DEFAULT CHARSET=utf8 COMMENT='日志表';
 
 -- ----------------------------
 -- Records of t_sys_log
@@ -8124,6 +8141,30 @@ INSERT INTO `t_sys_log` VALUES ('7440', '[类名]:com.atk.module.web.cms.ItemCon
 INSERT INTO `t_sys_log` VALUES ('7441', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1505978216658& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:16:56', ' - ', '品种添加');
 INSERT INTO `t_sys_log` VALUES ('7442', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=8&_=1505978263488& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-21 15:17:43', ' - ', '批量添加');
 INSERT INTO `t_sys_log` VALUES ('7443', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=d1b3427dd8924c359e7c8b085aa18b82&username=admin&password=123456&verifyCode=86m6& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-22 09:16:31', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7444', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=803aceafa5424aea8e3d1f32528c7990&username=admin&password=123456&verifyCode=c8w5& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-25 15:01:53', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7445', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1506327505676& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-25 16:18:25', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7446', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=24&_=1506327514861& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-25 16:18:34', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7447', '[类名]:com.atk.module.web.cms.DataController <br/>[方法]:batch <br>[参数]:itemId=25&_=1506327598530& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-25 16:19:58', ' - ', '批量添加');
+INSERT INTO `t_sys_log` VALUES ('7448', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=2351f1b0be6e4660b48a3044a26e4e9e&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-25 16:24:29', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7449', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=6&_=1506327897094& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-25 16:24:57', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7450', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=dd44d6c10e9a4b1f907e1f46dcc0a0fb&username=admin&password=123456&verifyCode=4n4c& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 10:10:41', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7451', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1506391857656& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 10:10:57', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7452', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=6&_=1506391859538& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 10:10:59', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7453', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:_=1506391898635& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 10:11:38', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7454', '[类名]:com.atk.module.web.cms.ItemController <br/>[方法]:input <br>[参数]:id=6&_=1506391901377& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 10:11:41', ' - ', '品种添加');
+INSERT INTO `t_sys_log` VALUES ('7455', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=0a67e494f1a94aadaf9b643397007aca&username=admin&password=123456&verifyCode=nx37& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 13:33:15', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7456', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=7be980e4586348e6a02ee884c0d1f07e&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:20:44', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7457', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1506406855783& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:20:55', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7458', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=2&_=1506406857659& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:20:57', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7459', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1506406861270& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:21:01', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7460', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1506406920614& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:22:00', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7461', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:_=1506406920849& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:22:00', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7462', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=12&_=1506406923807& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:22:03', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7463', '[类名]:com.zhiliao.module.web.cms.CategoryController <br/>[方法]:input <br>[参数]:id=14&_=1506406925628& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:22:05', ' - ', '栏目添加');
+INSERT INTO `t_sys_log` VALUES ('7464', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=1168cd269969454f8e91b476274b7db8&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:39:11', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7465', '[类名]:com.zhiliao.module.web.cms.ContentController <br/>[方法]:input <br>[参数]:categoryId=12&_=1506407956819& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 14:39:16', ' - ', '内容添加');
+INSERT INTO `t_sys_log` VALUES ('7466', '[类名]:com.zhiliao.module.web.system.service.impl.SysUserServiceImpl <br/>[方法]:login <br>[参数]:token=4b19b6b6b7214a5d8a0e5519e41a12c7&username=admin&password=123456& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 15:10:26', ' - ', '后台用户登陆');
+INSERT INTO `t_sys_log` VALUES ('7467', '[类名]:com.zhiliao.module.web.cms.ContentController <br/>[方法]:input <br>[参数]:categoryId=12&_=1506409856919& <br/>[  IP ]:0:0:0:0:0:0:0:1', '2017-09-26 15:10:56', ' - ', '内容添加');
 
 -- ----------------------------
 -- Table structure for t_sys_module
@@ -8476,7 +8517,7 @@ CREATE TABLE `t_sys_user` (
 -- ----------------------------
 -- Records of t_sys_user
 -- ----------------------------
-INSERT INTO `t_sys_user` VALUES ('1', 'admin', '3266bb93948cd26fd302dd2d58a478af381d75879ed9f3dcf309470c50f88fd6', '2017-01-27 21:08:29', '21232f297a57a5a743894a0e4a801fc3', '2017-09-22 09:16:31', null, '0:0:0:0:0:0:0:1', '1', '超级管理', 'http://cdn.chinafirefans.com/8837167b842a47a08beb5e1a26cd9167.png?imageslim');
+INSERT INTO `t_sys_user` VALUES ('1', 'admin', '3266bb93948cd26fd302dd2d58a478af381d75879ed9f3dcf309470c50f88fd6', '2017-01-27 21:08:29', '21232f297a57a5a743894a0e4a801fc3', '2017-09-26 15:10:26', null, '0:0:0:0:0:0:0:1', '1', '超级管理', 'http://cdn.chinafirefans.com/8837167b842a47a08beb5e1a26cd9167.png?imageslim');
 INSERT INTO `t_sys_user` VALUES ('177', 'testdemo1', 'e70877cd600c21f191324085a287f43ca46d7a213987b11341132bb872d4be54', '2017-07-23 17:34:53', 'f131d4091ccd5c25dc0937be1a2ce0e7', '2017-08-25 11:03:22', null, '59.37.29.137', '1', 'testdemo1', '');
 
 -- ----------------------------
