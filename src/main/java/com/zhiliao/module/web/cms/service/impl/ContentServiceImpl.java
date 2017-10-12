@@ -2,6 +2,7 @@ package com.zhiliao.module.web.cms.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 import com.zhiliao.common.exception.CmsException;
 import com.zhiliao.common.exception.SystemException;
 import com.zhiliao.common.utils.*;
@@ -306,7 +307,7 @@ public class ContentServiceImpl implements ContentService{
         TCmsModel model = modelService.findById(category.getModelId());
         /*如果包含子类栏目*/
         if(hasChild==1) {
-            List<TCmsCategory> cats =categoryService.findCategoryListByPid(categoryId);
+            List<TCmsCategory> cats = findChildCategory(categoryId);
             /*如果子栏目没有内容就查询当前自身*/
             if(CmsUtil.isNullOrEmpty(cats)){
                 categoryIds =new Long[]{categoryId};
@@ -342,6 +343,21 @@ public class ContentServiceImpl implements ContentService{
         return new PageInfo<>(contentMapper.selectByTopicContentListBySiteIdAndCategoryIds(siteId,categoryIds,orderBy,isHot,isPic,isRecommend));
     }
 
+    private List<TCmsCategory> findChildCategory(Long categoryId){
+        List<TCmsCategory> result =  Lists.newArrayList();
+        TCmsCategory category = new TCmsCategory();
+        category.setParentId(categoryId);
+        List<TCmsCategory> list =categoryService.findList(category);
+        if(CmsUtil.isNullOrEmpty(list))return null;
+        for (TCmsCategory subCat :list){
+            result.add(subCat);
+            List<TCmsCategory> subList =  findChildCategory(subCat.getCategoryId());
+            if(CmsUtil.isNullOrEmpty(subList)) continue;
+            result.addAll(subList);
+        }
+        return result;
+    }
+
     @Cacheable(key = "'find-siteid-'+#p0+'-modelid-'+#p1+'-orderby-'+#p2+'-pageNumber-'+#p3+'-pageSize-'+#p4+'-hasChild-'+#p5+'-isHot-'+#p6+'-isPic-'+#p7+'-isRecommend-'+#p8")
     @Override
     public PageInfo<Map> findContentListBySiteIdAndModelId(Integer siteId, Integer modelId, Integer orderBy, Integer pageNumber, Integer pageSize, Integer isHot, Integer isPic, Integer isRecommend) {
@@ -371,9 +387,20 @@ public class ContentServiceImpl implements ContentService{
         * todo 有必要确定子栏目的内容模型是否必须和父栏目一致,暂时以父栏目的模型为主
         */
         PageHelper.startPage(pageNumber,category.getPageSize());
-        return new PageInfo<>(contentMapper.selectByCategoyParentId(category.getCategoryId(),siteId,model.getTableName()));
+        return new PageInfo<>(contentMapper.selectByCategoryParentId(this.findChildIds(category.getCategoryId()),siteId,model.getTableName()));
     }
 
+    private String findChildIds(Long categoryId){
+        String catIds="";
+        TCmsCategory category = new TCmsCategory();
+        category.setParentId(categoryId);
+        List<TCmsCategory> list =categoryService.findList(category);
+        if(CmsUtil.isNullOrEmpty(list))return categoryId.toString();
+        for (TCmsCategory subCat :list){
+            catIds+=subCat.getCategoryId()+","+findChildIds(subCat.getCategoryId());
+        }
+        return catIds.substring(0,catIds.length()-1);
+    }
 
     @Async
     @Override

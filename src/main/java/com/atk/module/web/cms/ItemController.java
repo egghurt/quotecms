@@ -72,7 +72,7 @@ public class ItemController {
     public String toUser(@RequestParam(value = "userId",required = false) Integer userId, Model model) {
         if(userId!=null) {
             model.addAttribute("user", sysUserService.findSysUserByUserId(userId));
-            model.addAttribute("userRole", roleService.findByUserIdAndTypeId(userId,0));
+            model.addAttribute("userRole", roleService.findByUserId(userId));
         }
         model.addAttribute("items", itemService.findItemListByPid(0l));
         return "data/user_item";

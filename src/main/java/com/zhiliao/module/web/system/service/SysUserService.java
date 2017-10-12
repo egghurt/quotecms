@@ -20,9 +20,7 @@ public interface SysUserService {
      * @param remberMe
      * @return
      */
-
-    Map<String, Object> login(HttpServletRequest request, String username, String password, String remberMe, String loginType);
-
+    Map<String, Object> login(HttpServletRequest request, String username, String password, String remberMe);
 
     String save(TSysUser user,Integer[] roleIds,String orgIds);
 
@@ -75,4 +73,6 @@ public interface SysUserService {
 
 
     String changePassword(Integer userId,String oldPassword,String newPassword);
+
+    Integer countAll();
 }

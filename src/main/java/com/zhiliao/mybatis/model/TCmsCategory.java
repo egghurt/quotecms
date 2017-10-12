@@ -107,6 +107,16 @@ public class TCmsCategory implements Serializable {
      private String categoryIcon;
 
     /**
+     * 栏目权限标识
+     */
+    @Column(name = "permission_key")
+    private String permissionKey;
+
+    @OrderBy("DESC")
+    @Column(name = "sort_id")
+    private Integer sortId;
+
+    /**
      * 文本
      */
     private String content;
@@ -417,6 +427,38 @@ public class TCmsCategory implements Serializable {
 
     public void setCategoryIcon(String categoryIcon) {
         this.categoryIcon = categoryIcon;
+    }
+
+    /**
+     * 获取栏目权限标识
+     *
+     * @return permission_key - 栏目权限标识
+     */
+    public String getPermissionKey() {
+        return permissionKey;
+    }
+
+    /**
+     * 设置栏目权限标识
+     *
+     * @param permissionKey 栏目权限标识
+     */
+    public void setPermissionKey(String permissionKey) {
+        this.permissionKey = permissionKey;
+    }
+
+    /**
+     * @return sort_id
+     */
+    public Integer getSortId() {
+        return sortId;
+    }
+
+    /**
+     * @param sortId
+     */
+    public void setSortId(Integer sortId) {
+        this.sortId = sortId;
     }
 
     /**

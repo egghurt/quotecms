@@ -1,4 +1,4 @@
-package com.zhiliao.component.mybatis;
+package com.zhiliao.component.druid;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import com.github.pagehelper.PageInterceptor;
@@ -40,7 +40,7 @@ public class DataSourceConfiguration {
     public SqlSessionFactory sqlSessionFactory(@Qualifier("masterDataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage("com.zhiliao.mybatis.model");
+        bean.setTypeAliasesPackage("com.*.mybatis.model");
         //分页插件
         PageInterceptor pageHelper = new PageInterceptor();
         Properties properties = new Properties();

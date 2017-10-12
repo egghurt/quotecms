@@ -3,7 +3,6 @@ package com.zhiliao.component.shiro;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhiliao.component.shiro.realm.AdminRealm;
-import com.zhiliao.component.shiro.realm.UserRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.codec.Base64;
@@ -83,13 +82,6 @@ public class ShiroConfiguration {
 	}
 
 
-	@Bean(name = "userRealm")
-	@DependsOn(value="lifecycleBeanPostProcessor")
-	public UserRealm userRealm(HashedCredentialsMatcher hashedCredentialsMatcher) {
-		UserRealm userRealm = new UserRealm();
-		userRealm.setCredentialsMatcher(hashedCredentialsMatcher);
-		return userRealm;
-	}
 
 
 	@Bean(name = "adminRealm")
@@ -100,19 +92,6 @@ public class ShiroConfiguration {
 		return adminRealm;
 	}
 
-	@Bean(name = "defineModularRealmAuthenticator")
-	public DefaultModularRealm getDefineModularRealmAuthenticator(
-			AdminRealm adminRealm,
-			UserRealm userRealm){
-		DefaultModularRealm defineModularRealmAuthenticator = new  DefaultModularRealm();
-		Map<String, Object> definedRealms = Maps.newHashMap();
-		definedRealms.put("admin",adminRealm);
-		definedRealms.put("user",userRealm);
-		defineModularRealmAuthenticator.setDefinedRealms(definedRealms);
-        return defineModularRealmAuthenticator;
-	}
-
-
 
 	@Bean
 	public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
@@ -120,21 +99,17 @@ public class ShiroConfiguration {
 	}
 
 	/**
-	 * @see org.apache.shiro.mgt.SecurityManager
+	 * @see SecurityManager
 	 * @return
 	 */
 	@Bean(name="securityManager")
 	public DefaultWebSecurityManager securityManager(CookieRememberMeManager rememberMeManager,
-													 SessionManager sessionManager,
-													 DefaultModularRealm defaultModularRealm,
-													 EhCacheManager cacheManager,
-													 AdminRealm adminRealm,
-													 UserRealm userRealm) {
+                                                     SessionManager sessionManager,
+                                                     EhCacheManager cacheManager,
+                                                     AdminRealm adminRealm) {
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
-		manager.setAuthenticator(defaultModularRealm);
 		Collection<Realm> realms = Lists.newArrayList();
 		realms.add(adminRealm);
-		realms.add(userRealm);
 		manager.setRealms(realms);
 		manager.setSessionManager(sessionManager);
 		manager.setRememberMeManager(rememberMeManager);
@@ -151,7 +126,7 @@ public class ShiroConfiguration {
 
 
 	/**
-	 * @see org.apache.shiro.spring.web.ShiroFilterFactoryBean
+	 * @see ShiroFilterFactoryBean
 	 * @return
 	 */
 	@Bean(name = "shiroFilter")
